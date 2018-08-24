@@ -1,12 +1,10 @@
 # Team <write your team name here>:
-1. <team member 1>
-2. <team member 2>
-3. <team member 3>
-	
-<When you finish your homework, add a link here pointing to the solution (for example, a link to a page on the wiki)> 
+1. <team member name 1>
+2. <team member name 2>
+3. <team member name 3>
 
 ## Homework 1:
-<Links to the solution>
+<When you finish your homework, add a link pointing to the solution here (for example, a link to a page on the wiki)> 
 
 ## Homework 2:
 <Links to the solution>
