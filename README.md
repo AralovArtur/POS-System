@@ -1,7 +1,7 @@
 # Team <write your team name here>:
-1. <team member name 1>
-2. <team member name 2>
-3. <team member name 3>
+1. <Artyom Aralov>
+2. <Artur Aralov>
+3. <Sergei Kuštšenko>
 
 ## Homework 1:
 <When you finish your homework, add a link pointing to the solution here (for example, a link to a page on the wiki)> 
