@@ -24,4 +24,4 @@
 ## Homework 7:
 <Links to the solution>
 
-We encourage you to use [markdown sintax](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)
+We encourage you to use [markdown syntax](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)
