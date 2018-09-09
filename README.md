@@ -1,7 +1,7 @@
-# Team <write your team name here>:
+# Team <Ptenchiki>:
 1. <Artyom Aralov>
 2. <Artur Aralov>
-3. <Sergei KuÅ¡tÅ¡enko>
+3. <Sergei Kuštšenko>
 
 ## Homework 1:
 <When you finish your homework, add a link pointing to the solution here (for example, a link to a page on the wiki)> 
