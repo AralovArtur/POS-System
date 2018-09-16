@@ -4,7 +4,7 @@
 3. Sergei Kuštšenko
 
 ## Homework 1:
-<[Homework 1](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Home)> 
+<[Homework 1](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%201)> 
 
 ## Homework 2:
 <Links to the solution>
