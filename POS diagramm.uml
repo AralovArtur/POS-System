@@ -2,15 +2,43 @@
 <Diagram>
   <ID>JAVA</ID>
   <OriginalElement />
-  <nodes />
+  <nodes>
+    <node x="318.0" y="986.0">ee.ut.math.tvt.salessystem.SalesSystemException</node>
+    <node x="896.0" y="0.0">ee.ut.math.tvt.salessystem.dataobjects.StockItem</node>
+    <node x="0.0" y="603.0">ee.ut.math.tvt.salessystem.ui.controllers.StockController</node>
+    <node x="627.0" y="0.0">ee.ut.math.tvt.salessystem.dataobjects.SoldItem</node>
+    <node x="336.0" y="0.0">ee.ut.math.tvt.salessystem.dao.SalesSystemDAO</node>
+    <node x="0.0" y="986.0">ee.ut.math.tvt.salessystem.ui.SalesSystemUI</node>
+    <node x="654.0" y="603.0">ee.ut.math.tvt.salessystem.ui.ConsoleUI</node>
+    <node x="351.0" y="603.0">ee.ut.math.tvt.salessystem.ui.controllers.HistoryController</node>
+    <node x="336.0" y="233.0">ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO</node>
+    <node x="0.0" y="0.0">ee.ut.math.tvt.salessystem.ui.controllers.PurchaseController</node>
+    <node x="930.0" y="603.0">ee.ut.math.tvt.salessystem.logic.ShoppingCart</node>
+  </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic Group" zoom="0.7319327731092437" x="686.902411021814" y="575.0" />
-  <SelectedNodes />
+  <edges>
+    <edge source="ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO" target="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO">
+      <point x="0.0" y="-114.0" />
+      <point x="0.0" y="91.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7651991614255764" x="831.9556392225279" y="1204.9946762951195" />
+  <SelectedNodes>
+    <node>ee.ut.math.tvt.salessystem.SalesSystemException</node>
+    <node>ee.ut.math.tvt.salessystem.dataobjects.StockItem</node>
+    <node>ee.ut.math.tvt.salessystem.ui.controllers.HistoryController</node>
+    <node>ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO</node>
+    <node>ee.ut.math.tvt.salessystem.ui.controllers.StockController</node>
+    <node>ee.ut.math.tvt.salessystem.dataobjects.SoldItem</node>
+    <node>ee.ut.math.tvt.salessystem.dao.SalesSystemDAO</node>
+    <node>ee.ut.math.tvt.salessystem.ui.SalesSystemUI</node>
+    <node>ee.ut.math.tvt.salessystem.ui.controllers.PurchaseController</node>
+    <node>ee.ut.math.tvt.salessystem.ui.ConsoleUI</node>
+    <node>ee.ut.math.tvt.salessystem.logic.ShoppingCart</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Methods</Category>
-    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
