@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,21 @@ public class StockController implements Initializable {
     private Button addItem;
     @FXML
     private TableView<StockItem> warehouseTableView;
+
+    @FXML
+    private TextField barCodeField;
+
+    @FXML
+    private TextField quantityField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField priceField;
+
+
+
 
     public StockController(SalesSystemDAO dao) {
         this.dao = dao;
@@ -39,4 +55,25 @@ public class StockController implements Initializable {
         warehouseTableView.setItems(new ObservableListWrapper<>(dao.findStockItems()));
         warehouseTableView.refresh();
     }
+
+    @FXML
+    public void addProductButtonClicked() {
+    }
+
+    @FXML
+    public void resetProductField() {
+    }
+
+    @FXML
+    public void refreeshStockItems() {
+    }
+
+    @FXML
+    public void showWarehouse() {
+    }
+
+
+
+
+
 }

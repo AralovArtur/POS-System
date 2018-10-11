@@ -192,4 +192,8 @@ public class PurchaseController implements Initializable {
         nameField.setText("");
         priceField.setText("");
     }
+
+    private void showCart(){
+
+    }
 }
