@@ -83,5 +83,3 @@ public class SalesSystemUI extends Application {
         return fxmlLoader.load();
     }
 }
-
-

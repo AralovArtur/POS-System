@@ -3,122 +3,28 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="569.7314814814815" y="1248.5">ee.ut.math.tvt.salessystem.SalesSystemException</node>
-    <node x="14.954144620811235" y="0.0">ee.ut.math.tvt.salessystem.dataobjects.StockItem</node>
-    <node x="342.56305114638457" y="442.0">ee.ut.math.tvt.salessystem.dataobjects.SoldItem</node>
-    <node x="176.2314814814815" y="916.0">ee.ut.math.tvt.salessystem.dao.SalesSystemDAO</node>
-    <node x="249.59999999999997" y="1447.0">ee.ut.math.tvt.salessystem.ui.ConsoleUI</node>
-    <node x="10.5" y="1149.0">ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO</node>
-    <node x="309.7314814814815" y="1182.0">ee.ut.math.tvt.salessystem.logic.ShoppingCart</node>
+    <node x="538.0" y="508.0">ee.ut.math.tvt.salessystem.SalesSystemException</node>
+    <node x="553.0" y="0.0">ee.ut.math.tvt.salessystem.dataobjects.StockItem</node>
+    <node x="243.66666666666669" y="-30.0">ee.ut.math.tvt.salessystem.dataobjects.SoldItem</node>
+    <node x="0.0" y="0.0">ee.ut.math.tvt.salessystem.dao.SalesSystemDAO</node>
+    <node x="0.0" y="508.0">ee.ut.math.tvt.salessystem.ui.ConsoleUI</node>
+    <node x="0.0" y="234.0">ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO</node>
+    <node x="272.0" y="508.0">ee.ut.math.tvt.salessystem.logic.ShoppingCart</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="ee.ut.math.tvt.salessystem.logic.ShoppingCart" target="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO">
-      <point x="-28.5" y="-81.0" />
-      <point x="395.2314814814815" y="1129.0" />
-      <point x="397.6314814814815" y="1129.0" />
-      <point x="98.39999999999998" y="91.5" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO" target="ee.ut.math.tvt.salessystem.dataobjects.SoldItem">
-      <point x="61.5" y="-91.5" />
-      <point x="360.7314814814815" y="896.0" />
-      <point x="422.56305114638457" y="896.0" />
-      <point x="-32.0" y="202.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.SalesSystemException">
-      <point x="102.66666666666663" y="-114.0" />
-      <point x="467.7666666666666" y="1427.0" />
-      <point x="651.2314814814815" y="1427.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.dataobjects.SoldItem" target="ee.ut.math.tvt.salessystem.dataobjects.StockItem">
-      <point x="-56.00000000000006" y="-202.0" />
-      <point x="398.5630511463845" y="412.0" />
-      <point x="179.16843033509693" y="412.0" />
-      <point x="59.714285714285694" y="191.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.logic.ShoppingCart" target="ee.ut.math.tvt.salessystem.dataobjects.SoldItem">
-      <point x="28.5" y="-81.0" />
-      <point x="452.2314814814815" y="1129.0" />
-      <point x="472.0307760141094" y="1129.0" />
-      <point x="472.0307760141094" y="896.0" />
-      <point x="454.56305114638457" y="896.0" />
-      <point x="0.0" y="202.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.dataobjects.StockItem">
-      <point x="-102.66666666666674" y="-114.0" />
-      <point x="262.4333333333332" y="1427.0" />
-      <point x="0.0" y="1427.0" />
-      <point x="0.0" y="422.0" />
-      <point x="29.88271604938265" y="422.0" />
-      <point x="-89.57142857142858" y="191.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.logic.ShoppingCart">
-      <point x="25.66666666666663" y="-114.0" />
-      <point x="390.7666666666666" y="1397.0" />
-      <point x="480.7314814814815" y="1397.0" />
-      <point x="57.0" y="81.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.dataobjects.SoldItem">
-      <point x="51.33333333333336" y="-114.0" />
-      <point x="416.43333333333334" y="1407.0" />
-      <point x="548.2314814814815" y="1407.0" />
-      <point x="548.2314814814815" y="896.0" />
-      <point x="518.5630511463846" y="896.0" />
-      <point x="64.0" y="202.0" />
-    </edge>
     <edge source="ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO" target="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO">
-      <point x="102.5" y="-114.0" />
-      <point x="236.0" y="1129.0" />
-      <point x="200.8314814814815" y="1129.0" />
-      <point x="-98.4" y="91.5" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO" target="ee.ut.math.tvt.salessystem.dataobjects.SoldItem">
-      <point x="61.5" y="-114.0" />
-      <point x="195.0" y="1119.0" />
-      <point x="144.3007054673721" y="1119.0" />
-      <point x="144.3007054673721" y="886.0" />
-      <point x="390.56305114638457" y="886.0" />
-      <point x="-64.0" y="202.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO" target="ee.ut.math.tvt.salessystem.dataobjects.StockItem">
-      <point x="-102.5" y="-114.0" />
-      <point x="31.0" y="1119.0" />
-      <point x="83.81305114638454" y="1119.0" />
-      <point x="83.81305114638454" y="422.0" />
-      <point x="59.73985890652551" y="422.0" />
-      <point x="-59.71428571428572" y="191.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO">
-      <point x="-25.666666666666686" y="-114.0" />
-      <point x="339.4333333333333" y="1397.0" />
-      <point x="291.41843033509696" y="1397.0" />
-      <point x="291.41843033509696" y="1129.0" />
-      <point x="299.2314814814815" y="1129.0" />
-      <point x="0.0" y="91.5" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.dao.SalesSystemDAO" target="ee.ut.math.tvt.salessystem.dataobjects.StockItem">
-      <point x="-61.5" y="-91.5" />
-      <point x="237.7314814814815" y="866.0" />
-      <point x="216.3007054673721" y="866.0" />
-      <point x="216.3007054673721" y="422.0" />
-      <point x="149.31128747795404" y="422.0" />
-      <point x="29.857142857142804" y="191.0" />
-    </edge>
-    <edge source="ee.ut.math.tvt.salessystem.ui.ConsoleUI" target="ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO">
-      <point x="-77.00000000000006" y="-114.0" />
-      <point x="288.0999999999999" y="1417.0" />
-      <point x="133.5" y="1417.0" />
-      <point x="0.0" y="114.0" />
+      <point x="0.0" y="-114.5" />
+      <point x="0.0" y="92.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="366.09090909090924" y="828.2727272727273" />
+  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="320.41666666666663" y="126.24999999999997" />
   <SelectedNodes>
-    <node>ee.ut.math.tvt.salessystem.logic.ShoppingCart</node>
+    <node>ee.ut.math.tvt.salessystem.dataobjects.SoldItem</node>
   </SelectedNodes>
   <Categories>
-    <Category>Methods</Category>
     <Category>Fields</Category>
+    <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
