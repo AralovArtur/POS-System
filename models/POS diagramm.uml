@@ -5,11 +5,11 @@
   <nodes />
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="421.5" y="274.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="422.0" y="275.0" />
   <SelectedNodes />
   <Categories>
-    <Category>Fields</Category>
     <Category>Methods</Category>
+    <Category>Fields</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
