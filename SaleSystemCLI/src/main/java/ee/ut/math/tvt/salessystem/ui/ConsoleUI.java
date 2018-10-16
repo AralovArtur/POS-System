@@ -9,11 +9,10 @@ import ee.ut.math.tvt.salessystem.logic.ShoppingCart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Properties;
 
 /**
  * A simple CLI (limited functionality).
@@ -74,7 +73,26 @@ public class ConsoleUI {
         System.out.println("-------------------------");
     }
 
-    private void printUsage() {
+    private void showTeam() {
+        System.out.println("-------------------------");
+        try (FileReader reader = new FileReader("C:\\Bitbucket\\POS\\src\\main\\resources\\application.properties")) {
+            Properties properties = new Properties();
+            properties.load(reader);
+            String teamName = properties.getProperty("team_name");
+            String teamContactPerson = properties.getProperty("team_contact_person");
+            String teamMembers = properties.getProperty("team_members");
+            System.out.println("Team name: "+teamName);
+            System.out.println("Team contact person: "+teamContactPerson);
+            System.out.println("Team members: " +teamMembers);
+            System.out.println("-------------------------");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+        private void printUsage() {
         System.out.println("-------------------------");
         System.out.println("Usage:");
         System.out.println("h\t\tShow this help");
@@ -83,6 +101,7 @@ public class ConsoleUI {
         System.out.println("a IDX NR \tAdd NR of stock item with index IDX to the cart");
         System.out.println("p\t\tPurchase the shopping cart");
         System.out.println("r\t\tReset the shopping cart");
+        System.out.println("t\t\tShow team info");
         System.out.println("-------------------------");
     }
 
@@ -101,6 +120,8 @@ public class ConsoleUI {
             cart.submitCurrentPurchase();
         else if (c[0].equals("r"))
             cart.cancelCurrentPurchase();
+        else if (c[0].equals("t"))
+            showTeam();
         else if (c[0].equals("a") && c.length == 3) {
             try {
                 long idx = Long.parseLong(c[1]);
