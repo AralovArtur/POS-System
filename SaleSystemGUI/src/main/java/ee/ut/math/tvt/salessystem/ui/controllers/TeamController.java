@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +16,12 @@ import java.util.ResourceBundle;
 public class TeamController implements Initializable {
     @FXML
     private Label getTeamName;
+
+    @FXML
+    private Label getContactPerson;
+
+    @FXML
+    private Label getMembers;
 
     @FXML
     private ImageView getTeamImage;
@@ -34,12 +39,13 @@ public class TeamController implements Initializable {
             String teamName = properties.getProperty("team_name");
             getTeamName.setText(teamName);
             String teamContactPerson = properties.getProperty("team_contact_person");
+            getContactPerson.setText(teamContactPerson);
             String teamMembers = properties.getProperty("team_members");
+            getMembers.setText(teamMembers);
 
             //team logo
-            File file = new File(properties.getProperty("team_logo"));
-            Image image = new Image(file.toURI().toString());
-            //getTeamImage.setImage(image);
+            Image image = new Image("https://www.brandcrowd.com/gallery/brands/pictures/picture14457548935256.jpg");
+            getTeamImage.setImage(image);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

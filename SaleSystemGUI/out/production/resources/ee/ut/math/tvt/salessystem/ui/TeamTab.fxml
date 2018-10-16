@@ -9,17 +9,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="519.0" prefWidth="451.0" text="Team info" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane alignment="CENTER" animated="false" collapsible="false" text="Team info" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="500.0">
+         <items>
+            <AnchorPane prefHeight="200.0" prefWidth="323.0" styleClass="sub_background">
                <children>
-                  <GridPane prefHeight="243.0" prefWidth="451.0">
+                  <GridPane minHeight="200.0" minWidth="323.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                        <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -27,19 +27,19 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Team name" />
-                        <Label text="Team contact person" GridPane.rowIndex="1" />
-                        <Label text="Team members" GridPane.rowIndex="2" />
-                        <Label fx:id="getTeamName" GridPane.columnIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ImageView fx:id="getTeamImage" fitHeight="243.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                         <Label text="Team name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label fx:id="getTeamName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="Team contact person:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label fx:id="getContactPerson" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                         <Label text="Team members:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                         <Label fx:id="getMembers" GridPane.columnIndex="1" GridPane.rowIndex="2" wrapText="true"/>
+                        <ImageView fx:id="getTeamImage" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-        </items>
+            <AnchorPane prefHeight="200.0" prefWidth="323.0" />
+         </items>
       </SplitPane>
    </content>
 </TitledPane>
