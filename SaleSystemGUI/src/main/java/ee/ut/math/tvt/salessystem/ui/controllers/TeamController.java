@@ -33,7 +33,7 @@ public class TeamController implements Initializable {
 
     @FXML
     public void applicationData() {
-        try (FileReader reader = new FileReader("C:\\Bitbucket\\POS\\src\\main\\resources\\application.properties")) {
+        try (FileReader reader = new FileReader("C:\\Users\\Artyom\\Documents\\Uni\\Tarkvaratehnika\\lab7-ptenchiki\\src\\main\\resources\\application.properties")) {
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
