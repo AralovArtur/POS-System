@@ -35,7 +35,6 @@ public class StockController implements Initializable {
 
 
 
-
     public StockController(SalesSystemDAO dao) {
         this.dao = dao;
     }
