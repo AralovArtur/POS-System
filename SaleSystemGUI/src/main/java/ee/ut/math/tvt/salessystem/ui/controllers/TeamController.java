@@ -44,7 +44,8 @@ public class TeamController implements Initializable {
             getMembers.setText(teamMembers);
 
             //team logo
-            Image image = new Image("https://www.brandcrowd.com/gallery/brands/pictures/picture14457548935256.jpg");
+            String imageURL = properties.getProperty("team_logo");
+            Image image = new Image(imageURL);
             getTeamImage.setImage(image);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
