@@ -23,11 +23,12 @@ public class TeamController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        applicationData();
     }
 
     @FXML
     public void applicationData() {
-        try (FileReader reader = new FileReader("application.properties")) {
+        try (FileReader reader = new FileReader("C:\\Users\\Artyom\\Documents\\Uni\\Tarkvaratehnika\\lab7-ptenchiki\\src\\main\\resources\\application.properties")) {
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
@@ -38,7 +39,7 @@ public class TeamController implements Initializable {
             //team logo
             File file = new File(properties.getProperty("team_logo"));
             Image image = new Image(file.toURI().toString());
-            getTeamImage.setImage(image);
+            //getTeamImage.setImage(image);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
