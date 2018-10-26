@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class TeamController implements Initializable {
 
     @FXML
     public void applicationData() {
-        try (FileReader reader = new FileReader(System.getProperty("user.dir")+"\\src\\main\\resources\\application.properties")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator +"application.properties")) {
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
