@@ -75,7 +75,7 @@ public class ConsoleUI {
 
     private void showTeam() {
         System.out.println("-------------------------");
-        try (FileReader reader = new FileReader(System.getProperty("user.dir")+"\\src\\main\\resources\\application.properties")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator +"application.properties")) {
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
