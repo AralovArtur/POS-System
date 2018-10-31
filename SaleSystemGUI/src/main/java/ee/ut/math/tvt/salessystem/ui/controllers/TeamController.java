@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileSystem;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -38,7 +39,7 @@ public class TeamController implements Initializable {
 
     @FXML
     public void applicationData() {
-        try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator +"application.properties")) {
+        try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator + "application.properties")) {
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
