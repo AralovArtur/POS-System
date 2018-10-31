@@ -10,10 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -72,6 +69,8 @@ public class PurchaseController implements Initializable {
                 }
             }
         });
+
+        chooseProduct();
     }
 
     /** Event handler for the <code>new purchase</code> event. */
@@ -197,5 +196,20 @@ public class PurchaseController implements Initializable {
 
     private void showCart(){
 
+    }
+
+
+    private void chooseProduct() {
+        List<StockItem> stockItems = dao.findStockItems();
+        for (StockItem item: stockItems) {
+            CheckMenuItem checkMenuItem = new CheckMenuItem(item.getDescription());
+            checkMenuItem.setOnAction(e -> {
+                if (checkMenuItem.isSelected()) {
+                    barCodeField.setText(item.getId().toString());
+                    quantityField.setText(String.valueOf(item.getQuantity()));
+                    priceField.setText(String.valueOf(item.getPrice()));
+                }});
+            nameMenuButton.getItems().add(checkMenuItem);
+        }
     }
 }

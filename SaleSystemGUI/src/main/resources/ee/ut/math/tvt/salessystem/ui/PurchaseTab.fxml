@@ -131,9 +131,9 @@
                 <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <MenuButton fx:id="nameMenuButton" blendMode="DARKEN" mnemonicParsing="false" prefHeight="25.0" prefWidth="130" styleClass="name_button_style" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                          <items>
+                          <!--<items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
-                          </items>
+                          </items>-->
                         </MenuButton>
               </children>
             </GridPane>
