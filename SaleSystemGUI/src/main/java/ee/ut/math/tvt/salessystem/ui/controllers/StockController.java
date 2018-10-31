@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class StockController implements Initializable {
 
-    private static final Logger log = LogManager.getLogger(PurchaseController.class);
+    private static final Logger log = LogManager.getLogger(StockController.class);
 
     private final SalesSystemDAO dao;
 

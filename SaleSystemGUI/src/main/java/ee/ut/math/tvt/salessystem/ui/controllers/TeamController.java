@@ -5,6 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +17,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class TeamController implements Initializable {
+    private static final Logger log = LogManager.getLogger(PurchaseController.class);
+
     @FXML
     private Label getTeamName;
 
@@ -49,9 +53,9 @@ public class TeamController implements Initializable {
             Image image = new Image(imageURL);
             getTeamImage.setImage(image);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 }

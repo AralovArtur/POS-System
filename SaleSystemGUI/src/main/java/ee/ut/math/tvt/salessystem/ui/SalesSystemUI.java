@@ -87,4 +87,9 @@ public class SalesSystemUI extends Application {
         fxmlLoader.setController(controller);
         return fxmlLoader.load();
     }
+
+    @Override
+    public void stop(){
+        log.info("Salesystem GUI finished");
+    }
 }

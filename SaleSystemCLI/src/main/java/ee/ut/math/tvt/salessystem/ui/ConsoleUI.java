@@ -38,6 +38,7 @@ public class ConsoleUI {
      * Run the sales system CLI.
      */
     public void run() throws IOException {
+        log.info("Salesystem CLI started");
         System.out.println("===========================");
         System.out.println("=       Sales System      =");
         System.out.println("===========================");
@@ -86,9 +87,9 @@ public class ConsoleUI {
             System.out.println("Team members: " +teamMembers);
             System.out.println("-------------------------");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -110,8 +111,10 @@ public class ConsoleUI {
 
         if (c[0].equals("h"))
             printUsage();
-        else if (c[0].equals("q"))
+        else if (c[0].equals("q")) {
+            log.info("Salesystem CLI finished");
             System.exit(0);
+        }
         else if (c[0].equals("w"))
             showStock();
         else if (c[0].equals("c"))
