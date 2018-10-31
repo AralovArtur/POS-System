@@ -841,3 +841,7 @@
     -fx-opacity: .4;
      
 }
+
+.name_button_style {
+    main_text_color: #558188;
+}
