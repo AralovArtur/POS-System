@@ -9,9 +9,11 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<TitledPane alignment="CENTER" animated="false" collapsible="false" text="Warehouse status" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane alignment="CENTER" animated="false" collapsible="false" text="Warehouse status" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane styleClass="background_style">
         <bottom>
             <TableView fx:id="warehouseTableView" styleClass="blue_style" BorderPane.alignment="CENTER">
@@ -65,19 +67,19 @@
                   <padding>
                      <Insets bottom="5.0" left="100.0" right="40.0" top="5.0" />
                   </padding></Label>
-                    <TextField GridPane.columnIndex="1" fx:id="barCodeField">
+                    <TextField fx:id="barCodeField" GridPane.columnIndex="1">
                   <GridPane.margin>
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </GridPane.margin></TextField>
-                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="quantityField">
+                    <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </GridPane.margin></TextField>
-                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="nameField">
+                    <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </GridPane.margin></TextField>
-                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="priceField">
+                    <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3">
                   <GridPane.margin>
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </GridPane.margin></TextField>
@@ -85,7 +87,23 @@
                   <GridPane.margin>
                      <Insets left="50.0" />
                   </GridPane.margin></Button>
+               <Button mnemonicParsing="false" onMouseClicked="#resetProductButtonClicked" text="Reset Product" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane.margin>
+                     <Insets bottom="10.0" left="50.0" />
+                  </GridPane.margin>
+               </Button>
                 </children>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
         </top>
     </BorderPane>

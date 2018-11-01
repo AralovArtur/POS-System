@@ -24,6 +24,10 @@ public class StockController implements Initializable {
 
     @FXML
     private Button addItem;
+
+    @FXML
+    private Button resetItem;
+
     @FXML
     private TableView<StockItem> warehouseTableView;
 
@@ -95,12 +99,26 @@ public class StockController implements Initializable {
         }
     }
 
-    private void getInput() {
-        System.out.println(barCodeField.getPromptText());
+    @FXML
+    public void resetProductButtonClicked() {
+        log.info("Product has been removed");
+        resetProductField();
     }
 
-    @FXML
     public void resetProductField() {
+        try {
+            Long barCode = Long.valueOf(barCodeField.getText());
+            StockItem stockItem = dao.findStockItem(barCode);
+            dao.removeStockItem(stockItem);
+        }
+        catch (RuntimeException e) {
+            log.error("Wrong input data");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Wrong input data!");
+            alert.setContentText("Try to enter correct data!");
+            alert.showAndWait();
+        }
     }
 
     @FXML

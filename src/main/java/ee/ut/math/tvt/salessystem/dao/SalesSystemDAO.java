@@ -41,4 +41,6 @@ public interface SalesSystemDAO {
     void rollbackTransaction();
 
     void commitTransaction();
+
+    void removeStockItem(StockItem stockItem);
 }
