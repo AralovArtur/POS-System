@@ -6,6 +6,7 @@ import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -69,13 +70,23 @@ public class StockController implements Initializable {
     }
 
     public void addItemEventHandler() {
-        Long barCode = Long.valueOf(barCodeField.getText());
-        String name = String.valueOf(nameField.getText());
-        String description = "";
-        double price = Double.valueOf(priceField.getText());
-        int quantity = Integer.valueOf(quantityField.getText());
-        StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
-        dao.saveStockItem(stockItem);
+        try {
+            Long barCode = Long.valueOf(barCodeField.getText());
+            String name = String.valueOf(nameField.getText());
+            String description = "";
+            double price = Double.valueOf(priceField.getText());
+            int quantity = Integer.valueOf(quantityField.getText());
+            StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
+            dao.saveStockItem(stockItem);
+        }
+        catch (RuntimeException e) {
+            log.error("Wrong input data");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Wrong input data!");
+            alert.setContentText("Try to enter correct data!");
+            alert.showAndWait();
+        }
     }
 
     private void getInput() {
