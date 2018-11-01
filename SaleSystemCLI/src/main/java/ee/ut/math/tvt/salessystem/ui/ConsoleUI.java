@@ -77,6 +77,7 @@ public class ConsoleUI {
     private void showTeam() {
         System.out.println("-------------------------");
         try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator +"application.properties")) {
+            log.info("Application.properties is read");
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
@@ -86,8 +87,6 @@ public class ConsoleUI {
             System.out.println("Team contact person: "+teamContactPerson);
             System.out.println("Team members: " +teamMembers);
             System.out.println("-------------------------");
-        } catch (FileNotFoundException e) {
-            log.error(e.getMessage(), e);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

@@ -40,6 +40,7 @@ public class TeamController implements Initializable {
     @FXML
     public void applicationData() {
         try (FileReader reader = new FileReader(System.getProperty("user.dir")+ File.separator +"src" + File.separator + "main" + File.separator +"resources" + File.separator + "application.properties")) {
+            log.info("Application.properties is read");
             Properties properties = new Properties();
             properties.load(reader);
             String teamName = properties.getProperty("team_name");
@@ -53,8 +54,6 @@ public class TeamController implements Initializable {
             String imageURL = properties.getProperty("team_logo");
             Image image = new Image(imageURL);
             getTeamImage.setImage(image);
-        } catch (FileNotFoundException e) {
-            log.error(e.getMessage(), e);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

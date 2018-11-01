@@ -45,6 +45,7 @@ public class StockController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        log.info("Stock controller is initialized");
         refreshStockItems();
         // TODO refresh view after adding new items
     }

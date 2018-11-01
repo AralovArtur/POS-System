@@ -1,15 +1,17 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
-import ee.ut.math.tvt.salessystem.SalesSystemException;
+import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 /**
@@ -20,6 +22,7 @@ public class HistoryController implements Initializable {
 
     private static final Logger log = LogManager.getLogger(HistoryController.class);
 
+    private SalesSystemDAO dao;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: implement
@@ -35,10 +38,13 @@ public class HistoryController implements Initializable {
     public Button showAll;
 
     @FXML
-    public Button startDate;
+    public DatePicker startDate;
 
     @FXML
-    public Button endDate;
+    public DatePicker endDate;
+
+    @FXML
+    public TableView<SoldItem> soldProducts;
 
     @FXML
     protected void showBetweenDatesButtonClicked() {
@@ -47,16 +53,22 @@ public class HistoryController implements Initializable {
 
     @FXML
     protected void showLast10() {
+        resetDateField();
         log.info("Show last 10 has been requested");
     }
 
     @FXML
     private void showPurchaseHistory(){
+        resetDateField();
+        //dao.findStockItems();
+
         log.info("Purchase history has been requested");
+
     }
 
     private void resetDateField(){
-
+        startDate.getEditor().clear();
+        endDate.getEditor().clear();
     }
 
     private void showTransactionHistory(){
