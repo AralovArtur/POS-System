@@ -72,12 +72,18 @@ public class StockController implements Initializable {
     public void addItemEventHandler() {
         try {
             Long barCode = Long.valueOf(barCodeField.getText());
-            String name = String.valueOf(nameField.getText());
-            String description = "";
-            double price = Double.valueOf(priceField.getText());
             int quantity = Integer.valueOf(quantityField.getText());
-            StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
-            dao.saveStockItem(stockItem);
+            StockItem item = dao.findStockItem(barCode);
+            if (item != null) {
+                item.setQuantity(item.getQuantity() + quantity);
+            }
+            else {
+                String name = String.valueOf(nameField.getText());
+                String description = "";
+                double price = Double.valueOf(priceField.getText());
+                StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
+                dao.saveStockItem(stockItem);
+            }
         }
         catch (RuntimeException e) {
             log.error("Wrong input data");
@@ -104,9 +110,4 @@ public class StockController implements Initializable {
     @FXML
     public void showWarehouse() {
     }
-
-
-
-
-
 }
