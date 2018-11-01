@@ -165,11 +165,23 @@ public class PurchaseController implements Initializable {
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityField.getText());
+                if (stockItem.getQuantity() < quantity) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning Dialog");
+                    alert.setHeaderText("Max quantity exceeded!");
+                    alert.setContentText("Try to enter lower quantity!");
+
+                    alert.showAndWait();
+                }
+                else {
+                    stockItem.setQuantity(stockItem.getQuantity() - quantity);
+                    shoppingCart.addItem(new SoldItem(stockItem, quantity));
+                    purchaseTableView.refresh();
+                }
             } catch (NumberFormatException e) {
                 quantity = 1;
+                log.info("Vigane sisend");
             }
-            shoppingCart.addItem(new SoldItem(stockItem, quantity));
-            purchaseTableView.refresh();
         }
     }
 
