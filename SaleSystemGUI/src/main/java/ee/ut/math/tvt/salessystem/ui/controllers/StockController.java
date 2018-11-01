@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,6 +65,21 @@ public class StockController implements Initializable {
     @FXML
     public void addProductButtonClicked() {
         log.info("Product has been added");
+        addItemEventHandler();
+    }
+
+    public void addItemEventHandler() {
+        Long barCode = Long.valueOf(barCodeField.getText());
+        String name = String.valueOf(nameField.getText());
+        String description = "";
+        double price = Double.valueOf(priceField.getText());
+        int quantity = Integer.valueOf(quantityField.getText());
+        StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
+        dao.saveStockItem(stockItem);
+    }
+
+    private void getInput() {
+        System.out.println(barCodeField.getPromptText());
     }
 
     @FXML
