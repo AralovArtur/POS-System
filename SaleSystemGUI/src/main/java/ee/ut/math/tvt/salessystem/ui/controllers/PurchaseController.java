@@ -165,6 +165,14 @@ public class PurchaseController implements Initializable {
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityField.getText());
+                if (quantity <= 0) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning Dialog");
+                    alert.setHeaderText("Invalid input!");
+                    alert.setContentText("Recheck Your input!");
+
+                    alert.showAndWait();
+                }
                 if (stockItem.getQuantity() < quantity) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning Dialog");
@@ -174,13 +182,15 @@ public class PurchaseController implements Initializable {
                     alert.showAndWait();
                 }
                 else {
-                    stockItem.setQuantity(stockItem.getQuantity() - quantity);
-                    shoppingCart.addItem(new SoldItem(stockItem, quantity));
-                    purchaseTableView.refresh();
+                    if (quantity > 0) {
+                        stockItem.setQuantity(stockItem.getQuantity() - quantity);
+                        shoppingCart.addItem(new SoldItem(stockItem, quantity));
+                        purchaseTableView.refresh();
+                    }
                 }
             } catch (NumberFormatException e) {
                 quantity = 1;
-                log.info("Vigane sisend");
+                log.warn("Vigane sisend");
             }
         }
     }
