@@ -1,9 +1,13 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+import ee.ut.math.tvt.salessystem.DateControllNegativeException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
@@ -12,6 +16,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -23,56 +30,95 @@ public class HistoryController implements Initializable {
     private static final Logger log = LogManager.getLogger(HistoryController.class);
 
     private SalesSystemDAO dao;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: implement
     }
 
     @FXML
-    public Button showBetweenDates;
+    private Button showBetweenDates;
 
     @FXML
-    public Button showLast10;
+    private Button showLast10;
 
     @FXML
-    public Button showAll;
+    private Button showAll;
 
     @FXML
-    public DatePicker startDate;
+    private DatePicker startDate;
 
     @FXML
-    public DatePicker endDate;
+    private DatePicker endDate;
 
     @FXML
-    public TableView<SoldItem> soldProducts;
+    private TableView<HistoryItem> historyItemTableView;
+
+    @FXML
+    private TableView<SoldItem> soldProductsView;
 
     @FXML
     protected void showBetweenDatesButtonClicked() {
         log.info("Show between dates has been requested");
+        resetDateField();
+        LocalDate start = startDate.getValue();
+        LocalDate end = endDate.getValue();
+        if (datesControll(start,end)){
+            //historyItemTableView.setItems(new ObservableListWrapper<>(dao.findHistoryItemsBetween(start,end)));
+            clearSoldProductsView();
+        }
     }
 
     @FXML
     protected void showLast10() {
-        resetDateField();
         log.info("Show last 10 has been requested");
+        resetDateField();
+        historyItemTableView.setItems(new ObservableListWrapper<>(dao.find10LastHistoryItems()));
+        clearSoldProductsView();
     }
-
     @FXML
     private void showPurchaseHistory(){
-        resetDateField();
-        //dao.findStockItems();
-
         log.info("Purchase history has been requested");
-
+        resetDateField();
+        historyItemTableView.setItems(new ObservableListWrapper<>(dao.findHistoryItems()));
+        clearSoldProductsView();
+        //dao.findStockItems();
     }
 
+    private void clearSoldProductsView(){
+        log.info("Sold products view is cleared");
+        soldProductsView.setItems(new ObservableListWrapper<>(new ArrayList<>()));
+    }
+
+
     private void resetDateField(){
+        log.info("Start and End dates are cleared");
         startDate.getEditor().clear();
         endDate.getEditor().clear();
     }
 
-    private void showTransactionHistory(){
+    private boolean datesControll(LocalDate start, LocalDate end){
+        Period period = Period.between(end, start);
+        try {
+            if (!period.isNegative()){
+                log.info("Dates are negative");
+                throw new DateControllNegativeException();
+            }
+        } catch (DateControllNegativeException e){
+            alertWindow("Date exception",
+                    "Choosen date difference is negative",
+                    "End date is earlier than start day");
+            return false;
+        }
+        return true;
+    }
 
+    private void alertWindow(String title, String headerText, String contentText){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
     private void start(Stage stage){

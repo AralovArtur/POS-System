@@ -1,8 +1,10 @@
 package ee.ut.math.tvt.salessystem.dao;
 
+import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     private final List<StockItem> stockItemList;
     private final List<SoldItem> soldItemList;
+    private final List<HistoryItem> historyItemList;
 
     public InMemorySalesSystemDAO() {
         List<StockItem> items = new ArrayList<StockItem>();
@@ -19,6 +22,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         items.add(new StockItem(4L, "Free Beer", "Student's delight", 0.0, 100));
         this.stockItemList = items;
         this.soldItemList = new ArrayList<>();
+        this.historyItemList = new ArrayList<>();
     }
 
     @Override
@@ -38,6 +42,26 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     @Override
     public void saveSoldItem(SoldItem item) {
         soldItemList.add(item);
+    }
+
+    @Override
+    public List<HistoryItem> findHistoryItems() {
+        return historyItemList;
+    }
+
+    @Override
+    public List<HistoryItem> findHistoryItemsBetween(LocalDate startDate, LocalDate endDate) {
+        return null;
+    }
+
+    @Override
+    public List<HistoryItem> find10LastHistoryItems() {
+        return null;
+    }
+
+    @Override
+    public void saveHistoryItem(HistoryItem item) {
+        historyItemList.add(item);
     }
 
     @Override

@@ -9,8 +9,8 @@ public class SalesSystemException extends RuntimeException {
         super();
     }
 
-    public SalesSystemException(String message) {
-        super(message);
+    public SalesSystemException(String message){
+            super(message);
     }
 
     public SalesSystemException(String message, Throwable cause) {
