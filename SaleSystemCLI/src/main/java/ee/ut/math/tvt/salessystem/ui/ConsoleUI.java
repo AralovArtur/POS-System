@@ -1,6 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui;
 
-import ee.ut.math.tvt.salessystem.SalesSystemException;
+import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;

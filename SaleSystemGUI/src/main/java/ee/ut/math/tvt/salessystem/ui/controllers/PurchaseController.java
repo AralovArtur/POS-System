@@ -1,7 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import ee.ut.math.tvt.salessystem.SalesSystemException;
+import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;

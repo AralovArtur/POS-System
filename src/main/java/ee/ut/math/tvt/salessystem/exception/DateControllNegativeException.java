@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.salessystem;
+package ee.ut.math.tvt.salessystem.exception;
 
 public class DateControllNegativeException extends RuntimeException {
 

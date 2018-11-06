@@ -1,10 +1,13 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import ee.ut.math.tvt.salessystem.DateControllNegativeException;
+import ee.ut.math.tvt.salessystem.exception.DateControllEmptyException;
+import ee.ut.math.tvt.salessystem.exception.DateControllNegativeException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -29,12 +32,8 @@ public class HistoryController implements Initializable {
 
     private static final Logger log = LogManager.getLogger(HistoryController.class);
 
-    private SalesSystemDAO dao;
+    private final SalesSystemDAO dao;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO: implement
-    }
 
     @FXML
     private Button showBetweenDates;
@@ -57,6 +56,25 @@ public class HistoryController implements Initializable {
     @FXML
     private TableView<SoldItem> soldProductsView;
 
+    public HistoryController(SalesSystemDAO dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        historyItemTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HistoryItem>() {
+            @Override
+            public void changed(ObservableValue<? extends HistoryItem> observableValue, HistoryItem oldValue, HistoryItem newValue) {
+                //Check whether item is selected and set value of selected item to Label
+                if(historyItemTableView.getSelectionModel().getSelectedItem() != null)
+                {
+                    HistoryItem e = (HistoryItem) newValue;
+                    soldProductsView.setItems(new ObservableListWrapper<SoldItem>(e.getItems()));
+                }
+            }
+        });
+    }
+
     @FXML
     protected void showBetweenDatesButtonClicked() {
         log.info("Show between dates has been requested");
@@ -64,7 +82,7 @@ public class HistoryController implements Initializable {
         LocalDate start = startDate.getValue();
         LocalDate end = endDate.getValue();
         if (datesControll(start,end)){
-            //historyItemTableView.setItems(new ObservableListWrapper<>(dao.findHistoryItemsBetween(start,end)));
+            historyItemTableView.setItems(new ObservableListWrapper<>(dao.findHistoryItemsBetween(start,end)));
             clearSoldProductsView();
         }
     }
@@ -98,12 +116,23 @@ public class HistoryController implements Initializable {
     }
 
     private boolean datesControll(LocalDate start, LocalDate end){
-        Period period = Period.between(end, start);
+
         try {
+            if (start == null || end == null){
+                log.info("Dates are empty");
+                throw new DateControllEmptyException();
+            }
+            Period period = Period.between(end, start);
             if (!period.isNegative()){
                 log.info("Dates are negative");
                 throw new DateControllNegativeException();
             }
+        } catch (DateControllEmptyException e){
+            alertWindow("Date exception",
+                    "Date field is empty",
+                    "Please select date!");
+            return false;
+
         } catch (DateControllNegativeException e){
             alertWindow("Date exception",
                     "Choosen date difference is negative",

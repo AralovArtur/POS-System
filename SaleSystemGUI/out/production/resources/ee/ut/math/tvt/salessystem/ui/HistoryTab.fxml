@@ -54,7 +54,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="-2.0" prefHeight="200.0" prefWidth="600.0">
+                  <TableView fx:id="historyItemTableView" layoutX="-2.0" prefHeight="200.0" prefWidth="600.0">
                     <columns>
                       <TableColumn prefWidth="200.0" text="Date" />
                       <TableColumn prefWidth="200.0" text="Time" />
@@ -65,7 +65,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TableView fx:id="soldProducts" prefHeight="274.0" prefWidth="600.0">
+      <TableView fx:id="soldProductsView" prefHeight="274.0" prefWidth="600.0">
         <columns>
           <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Id" />
           <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Name" />
