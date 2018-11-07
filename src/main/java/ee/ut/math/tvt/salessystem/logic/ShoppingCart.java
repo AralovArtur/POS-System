@@ -1,7 +1,10 @@
 package ee.ut.math.tvt.salessystem.logic;
 
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -44,8 +47,11 @@ public class ShoppingCart {
         // what is a transaction? https://stackoverflow.com/q/974596
         dao.beginTransaction();
         try {
+            HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
+            dao.saveHistoryItem(historyItem);
             for (SoldItem item : items) {
                 dao.saveSoldItem(item);
+                historyItem.addItem(item);
             }
             dao.commitTransaction();
             items.clear();

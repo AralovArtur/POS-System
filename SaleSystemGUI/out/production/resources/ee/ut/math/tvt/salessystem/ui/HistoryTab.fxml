@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="110.0" prefWidth="600.0">
@@ -56,9 +57,21 @@
                <children>
                   <TableView fx:id="historyItemTableView" layoutX="-2.0" prefHeight="200.0" prefWidth="600.0">
                     <columns>
-                      <TableColumn prefWidth="200.0" text="Date" />
-                      <TableColumn prefWidth="200.0" text="Time" />
-                        <TableColumn prefWidth="200.0" text="Total" />
+                      <TableColumn text="Date" >
+                          <cellValueFactory>
+                              <PropertyValueFactory property="date" />
+                          </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn text="Time" >
+                          <cellValueFactory>
+                              <PropertyValueFactory property="time" />
+                          </cellValueFactory>
+                      </TableColumn>
+                        <TableColumn  text="Total" >
+                            <cellValueFactory>
+                                <PropertyValueFactory property="total" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                   </TableView>
                </children>
@@ -67,11 +80,31 @@
       </TitledPane>
       <TableView fx:id="soldProductsView" prefHeight="274.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Id" />
-          <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Name" />
-            <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Price" />
-            <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Quantity" />
-            <TableColumn prefWidth="120.0" sortType="DESCENDING" text="Sum" />
+          <TableColumn  text="Id" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn  text="Name" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="name" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn  text="Price" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="price" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn  text="Quantity" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantity" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn  text="Sum" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="sum" />
+                </cellValueFactory>
+            </TableColumn>
         </columns>
       </TableView>
    </children>

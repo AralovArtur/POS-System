@@ -68,8 +68,7 @@ public class HistoryController implements Initializable {
                 //Check whether item is selected and set value of selected item to Label
                 if(historyItemTableView.getSelectionModel().getSelectedItem() != null)
                 {
-                    HistoryItem e = (HistoryItem) newValue;
-                    soldProductsView.setItems(new ObservableListWrapper<SoldItem>(e.getItems()));
+                    soldProductsView.setItems(new ObservableListWrapper<SoldItem>(newValue.getItems()));
                 }
             }
         });

@@ -1,6 +1,8 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class HistoryItem {
     private List<SoldItem> items;
 
 
+
     public HistoryItem() {
     }
 
@@ -22,6 +25,20 @@ public class HistoryItem {
     }
 
 
+    public double getTotal(){
+        double total = 0.0;
+        for (SoldItem item: items){
+            total +=item.getSum();
+        }
+        return total;
+    }
+
+    public String getTime(){
+        int hour = date.getHour();
+        int minutes = date.getMinute();
+        int seconds = date.getSecond();
+        return String.format("%h:%d:%s",hour,minutes,seconds);
+    }
     public void addItem(SoldItem item){
         items.add(item);
     }
@@ -38,8 +55,9 @@ public class HistoryItem {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDate getDate() {
+
+        return date.toLocalDate();
     }
 
     public void setDate(LocalDateTime date) {
