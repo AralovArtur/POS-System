@@ -6,6 +6,7 @@ import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         items.add(new StockItem(3L, "Frankfurters", "Beer sauseges", 15.0, 12));
         items.add(new StockItem(4L, "Free Beer", "Student's delight", 0.0, 100));
 
+        //This is for testing only
         List<HistoryItem> historyItems = new ArrayList<>();
         HistoryItem i1 = new HistoryItem(LocalDateTime.now());
         i1.addItem(new SoldItem(new StockItem(3L, "Frankfurters", "Beer sauseges", 15.0, 12),10));
@@ -58,7 +60,16 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public List<HistoryItem> findHistoryItemsBetween(LocalDate startDate, LocalDate endDate) {
-        return null;
+        List<HistoryItem> result = new ArrayList<>();
+        for (HistoryItem item : historyItemList){
+            LocalDate ld = item.getLocalDateTime().toLocalDate();
+            if (ld.isAfter(startDate) &&  ld.isBefore(endDate)
+                || ld.isEqual(startDate)
+                || ld.isEqual(endDate)){
+                result.add(item);
+            }
+        }
+        return result;
     }
 
     @Override

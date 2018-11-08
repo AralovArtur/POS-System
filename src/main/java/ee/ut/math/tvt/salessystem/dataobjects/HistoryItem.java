@@ -37,7 +37,7 @@ public class HistoryItem {
         int hour = date.getHour();
         int minutes = date.getMinute();
         int seconds = date.getSecond();
-        return String.format("%h:%d:%s",hour,minutes,seconds);
+        return String.format("%d:%d:%d",hour,minutes,seconds);
     }
     public void addItem(SoldItem item){
         items.add(item);
@@ -55,9 +55,12 @@ public class HistoryItem {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
+        return date.toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
 
-        return date.toLocalDate();
+    public LocalDateTime getLocalDateTime(){
+        return date;
     }
 
     public void setDate(LocalDateTime date) {

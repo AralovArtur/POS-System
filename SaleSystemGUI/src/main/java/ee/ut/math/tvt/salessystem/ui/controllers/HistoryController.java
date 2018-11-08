@@ -66,8 +66,8 @@ public class HistoryController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends HistoryItem> observableValue, HistoryItem oldValue, HistoryItem newValue) {
                 //Check whether item is selected and set value of selected item to Label
-                if(historyItemTableView.getSelectionModel().getSelectedItem() != null)
-                {
+                clearSoldProductsView();
+                if(historyItemTableView.getSelectionModel().getSelectedItem() != null) {
                     soldProductsView.setItems(new ObservableListWrapper<SoldItem>(newValue.getItems()));
                 }
             }
@@ -77,7 +77,6 @@ public class HistoryController implements Initializable {
     @FXML
     protected void showBetweenDatesButtonClicked() {
         log.info("Show between dates has been requested");
-        resetDateField();
         LocalDate start = startDate.getValue();
         LocalDate end = endDate.getValue();
         if (datesControll(start,end)){
@@ -122,7 +121,7 @@ public class HistoryController implements Initializable {
                 throw new DateControllEmptyException();
             }
             Period period = Period.between(end, start);
-            if (!period.isNegative()){
+            if (!period.isNegative() && !period.isZero()){
                 log.info("Dates are negative");
                 throw new DateControllNegativeException();
             }
