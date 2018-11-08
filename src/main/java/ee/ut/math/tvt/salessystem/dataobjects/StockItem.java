@@ -1,5 +1,8 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Stock item.
  */

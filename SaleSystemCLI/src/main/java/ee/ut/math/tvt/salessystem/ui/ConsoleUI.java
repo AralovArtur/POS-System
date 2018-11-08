@@ -129,8 +129,15 @@ public class ConsoleUI {
                 long idx = Long.parseLong(c[1]);
                 int amount = Integer.parseInt(c[2]);
                 StockItem item = dao.findStockItem(idx);
-                if (item != null) {
+                if (amount > item.getQuantity()) {
+                    System.out.println("Maximum quantity exceeded");
+                }
+                else if (amount <=0) {
+                    System.out.println("Invalid quantity");
+                }
+                else if (item != null) {
                     cart.addItem(new SoldItem(item, Math.min(amount, item.getQuantity())));
+                    item.setQuantity(item.getQuantity() - amount);
                 } else {
                     System.out.println("no stock item with id " + idx);
                 }
