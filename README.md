@@ -13,7 +13,7 @@
 <[Homework 3](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%203)>
 
 ## Homework 4:
-<Links to the solution>
+<[Homework 4](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%204)>
 
 ## Homework 5:
 <Links to the solution>

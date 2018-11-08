@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
@@ -79,6 +80,7 @@ public class PurchaseController implements Initializable {
         log.info("New sale process started");
         try {
             enableInputs();
+            this.priceField.setDisable(true);
         } catch (SalesSystemException e) {
             log.error(e.getMessage(), e);
         }
@@ -215,11 +217,6 @@ public class PurchaseController implements Initializable {
         //nameField.setText("");
         priceField.setText("");
     }
-
-    private void showCart(){
-
-    }
-
 
     private void chooseProduct() {
         List<StockItem> stockItems = dao.findStockItems();
