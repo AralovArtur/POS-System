@@ -63,6 +63,10 @@ public class ConsoleUI {
         System.out.println("-------------------------");
     }
 
+    private void addToStock() {
+
+    }
+
     private void showCart() {
         System.out.println("-------------------------");
         for (SoldItem si : cart.getAll()) {
@@ -97,6 +101,9 @@ public class ConsoleUI {
         System.out.println("Usage:");
         System.out.println("h\t\tShow this help");
         System.out.println("w\t\tShow warehouse contents");
+        System.out.println("wa IDX NR NA DSC PR \tAdd NR of stock item with index IDX, name NA, description DESC and" +
+                "price PR to the stock");
+        System.out.println("wr IDX \t Remove stock item with index INDX");
         System.out.println("c\t\tShow cart contents");
         System.out.println("a IDX NR \tAdd NR of stock item with index IDX to the cart");
         System.out.println("p\t\tPurchase the shopping cart");
@@ -116,6 +123,57 @@ public class ConsoleUI {
         }
         else if (c[0].equals("w"))
             showStock();
+        else if (c[0].equals("wa") && c.length == 6) {
+            try {
+                long idx = Long.parseLong(c[1]);
+                int amount = Integer.parseInt(c[2]);
+                if (amount < 1) {
+                    log.error("Amount chould be positive");
+                    throw new SalesSystemException();
+                }
+                String name = c[3];
+                String description = c[4];
+                double price = Double.parseDouble(c[5]);
+                if (price < 0) {
+                    log.error("Price should be positive");
+                    throw  new SalesSystemException();
+                }
+                StockItem item = dao.findStockItem(idx);
+                if (item != null) {
+                    if (item.getName().equals(name)) {
+                        item.setQuantity(item.getQuantity() + amount);
+                        item.setPrice(price);
+                    }
+                    else {
+                        log.error("Wrong product name given");
+                        throw new SalesSystemException();
+                    }
+                }
+                else {
+                    StockItem stockItem = new StockItem(idx, name, description, price, amount);
+                    dao.saveStockItem(stockItem);
+                }
+            } catch (SalesSystemException | NoSuchElementException e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+        else if (c[0].equals("wr") && c.length == 2) {
+            try {
+                long idx = Long.parseLong(c[1]);
+                StockItem item = dao.findStockItem(idx);
+                if (item == null) {
+                    log.error("no stock item with this id");
+                    throw new SalesSystemException();
+                }
+                else {
+                    dao.removeStockItem(item);
+                }
+            }
+            catch (SalesSystemException | NoSuchElementException e) {
+                log.error(e.getMessage(), e);
+            }
+
+        }
         else if (c[0].equals("c"))
             showCart();
         else if (c[0].equals("p"))
