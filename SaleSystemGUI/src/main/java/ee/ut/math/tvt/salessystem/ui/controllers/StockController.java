@@ -77,14 +77,26 @@ public class StockController implements Initializable {
         try {
             Long barCode = Long.valueOf(barCodeField.getText());
             int quantity = Integer.valueOf(quantityField.getText());
+            String name = String.valueOf(nameField.getText());
+            double price = Double.valueOf(priceField.getText());
+            if (quantity < 1) {
+                throw new RuntimeException();
+            }
+            if (price < 0) {
+                throw new RuntimeException();
+            }
             StockItem item = dao.findStockItem(barCode);
             if (item != null) {
-                item.setQuantity(item.getQuantity() + quantity);
+                if (item.getName().equals(name)) {
+                    item.setQuantity(item.getQuantity() + quantity);
+                    item.setPrice(price);
+                }
+                else {
+                    throw new RuntimeException();
+                }
             }
             else {
-                String name = String.valueOf(nameField.getText());
                 String description = "";
-                double price = Double.valueOf(priceField.getText());
                 StockItem stockItem = new StockItem(barCode, name, description, price, quantity);
                 dao.saveStockItem(stockItem);
             }
