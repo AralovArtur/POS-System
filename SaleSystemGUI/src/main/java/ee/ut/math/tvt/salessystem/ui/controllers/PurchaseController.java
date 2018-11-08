@@ -80,6 +80,7 @@ public class PurchaseController implements Initializable {
         log.info("New sale process started");
         try {
             enableInputs();
+            this.priceField.setDisable(true);
         } catch (SalesSystemException e) {
             log.error(e.getMessage(), e);
         }
