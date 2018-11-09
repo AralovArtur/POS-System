@@ -185,7 +185,12 @@ public class ConsoleUI {
         else if (c[0].equals("a") && c.length == 3) {
             try {
                 long idx = Long.parseLong(c[1]);
-                int amount = Integer.parseInt(c[2]);
+                int amount = 0;
+                try {
+                    amount = Integer.parseInt(c[2]);
+                } catch (SalesSystemException | NumberFormatException e) {
+                    System.out.println("Invalid quantity");
+                }
                 StockItem item = dao.findStockItem(idx);
                 if (amount > item.getQuantity()) {
                     System.out.println("Maximum quantity exceeded");
