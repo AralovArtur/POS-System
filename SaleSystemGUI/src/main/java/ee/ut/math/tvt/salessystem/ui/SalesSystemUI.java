@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui;
 
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.ui.controllers.HistoryController;
@@ -31,11 +32,11 @@ public class SalesSystemUI extends Application {
 
     private static final Logger log = LogManager.getLogger(SalesSystemUI.class);
 
-    private final SalesSystemDAO dao;
+    private final HibernateSalesSystemDAO dao;
     private final ShoppingCart shoppingCart;
 
     public SalesSystemUI() {
-        dao = new InMemorySalesSystemDAO();
+        dao = new HibernateSalesSystemDAO();
         shoppingCart = new ShoppingCart(dao);
     }
 

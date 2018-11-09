@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui;
 
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
@@ -20,16 +21,16 @@ import java.util.Properties;
 public class ConsoleUI {
     private static final Logger log = LogManager.getLogger(ConsoleUI.class);
 
-    private final SalesSystemDAO dao;
+    private final HibernateSalesSystemDAO dao;
     private final ShoppingCart cart;
 
-    public ConsoleUI(SalesSystemDAO dao) {
+    public ConsoleUI(HibernateSalesSystemDAO dao) {
         this.dao = dao;
         cart = new ShoppingCart(dao);
     }
 
     public static void main(String[] args) throws Exception {
-        SalesSystemDAO dao = new InMemorySalesSystemDAO();
+        HibernateSalesSystemDAO dao = new HibernateSalesSystemDAO();
         ConsoleUI console = new ConsoleUI(dao);
         console.run();
     }
