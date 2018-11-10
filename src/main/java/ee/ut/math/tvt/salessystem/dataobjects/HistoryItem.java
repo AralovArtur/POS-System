@@ -14,8 +14,6 @@ public class HistoryItem {
 
     private List<SoldItem> items;
 
-
-
     public HistoryItem() {
     }
 
