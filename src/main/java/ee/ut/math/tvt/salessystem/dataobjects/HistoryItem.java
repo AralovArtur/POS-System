@@ -1,17 +1,23 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Entity
+//@Table(name="History")
 public class HistoryItem {
 
+    @Id
+    @GeneratedValue()
     private Long id;
 
+    @Column(name="Date")
     private LocalDateTime date;
 
+    //@OneToMany(mappedBy = "historyId")
     private List<SoldItem> items;
 
     public HistoryItem() {

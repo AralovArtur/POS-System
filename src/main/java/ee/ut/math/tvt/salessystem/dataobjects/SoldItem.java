@@ -2,7 +2,6 @@ package ee.ut.math.tvt.salessystem.dataobjects;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Already bought StockItem. SoldItem duplicates name and price for preserving history.
@@ -19,6 +18,10 @@ public class SoldItem {
     @MapsId
     @JoinColumn(name = "StockItemId")
     private StockItem stockItem;
+
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "fk_history")
+    //private HistoryItem historyId;
 
     @Column(name = "name")
     private String name;
@@ -40,6 +43,15 @@ public class SoldItem {
         this.quantity = quantity;
     }
 
+/*
+    public HistoryItem getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(HistoryItem historyId) {
+        this.historyId = historyId;
+    }
+*/
     public Long getId() {
         return id;
     }
