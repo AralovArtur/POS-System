@@ -8,23 +8,23 @@ import java.util.List;
  * Stock item.
  */
 @Entity
-@Table(name = "StockItem")
+@Table
 public class StockItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
-    @Column(name = "price")
+    @Column
     private double price;
 
-    @Column(name = "description")
+    @Column
     private String description;
 
-    @Column(name = "quantity")
+    @Column
     private int quantity;
 
     public StockItem() {
