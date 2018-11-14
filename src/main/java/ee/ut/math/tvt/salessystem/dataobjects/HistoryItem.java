@@ -6,18 +6,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-//@Table(name="History")
+@Entity
+@Table(name="History")
 public class HistoryItem {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="Date")
     private LocalDateTime date;
 
-    //@OneToMany(mappedBy = "historyId")
+    @OneToMany(mappedBy = "historyId")
     private List<SoldItem> items;
 
     public HistoryItem() {
@@ -27,7 +27,6 @@ public class HistoryItem {
         this.date = date;
         this.items = new ArrayList<>();
     }
-
 
     public double getTotal(){
         double total = 0.0;

@@ -1,6 +1,5 @@
 package ee.ut.math.tvt.salessystem.dao;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
@@ -24,17 +23,6 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
             // probably forgot to start the database before starting the application
             emf = Persistence.createEntityManagerFactory("pos");
             em = emf.createEntityManager();
-            em.getTransaction().begin();
-
-
-
-            StockItem si = new StockItem("Lays chips", 11.0, "Potato chips", 5);
-
-            em.persist(si);
-            em.flush();
-
-            em.getTransaction().commit();
-
     }
 
     // TODO implement missing methods
@@ -47,31 +35,38 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     @Override
     public List<StockItem> findStockItems() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<StockItem> cq = cb.createQuery(StockItem.class);
-        Root<StockItem> stockItemRoot = cq.from(StockItem.class);
-        cq.select(stockItemRoot.as(StockItem.class));
-        System.out.println(em.createQuery(cq).getResultList());
-        return em.createQuery(cq).getResultList();
+        CriteriaQuery<StockItem> query = cb.createQuery(StockItem.class);
+        Root<StockItem> stockItemRoot = query.from(StockItem.class);
+        query.select(stockItemRoot.as(StockItem.class));
+        //System.out.println(em.createQuery(query).getResultList());
+        return em.createQuery(query).getResultList();
     }
 
     @Override
     public StockItem findStockItem(long id) {
-        return null;
+        return em.find(StockItem.class, id);
     }
 
     @Override
     public void saveStockItem(StockItem stockItem) {
-
+        em.persist(stockItem);
+        em.flush(); // Writes changes to DB
     }
 
     @Override
-    public void saveSoldItem(SoldItem item) {
-
+    public void saveSoldItem(SoldItem soldItem) {
+        em.persist(soldItem);
+        em.flush();
     }
 
     @Override
     public List<HistoryItem> findHistoryItems() {
-        return null;
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<HistoryItem> query = cb.createQuery(HistoryItem.class);
+        Root<StockItem> stockItemRoot = query.from(StockItem.class);
+        query.select(stockItemRoot.as(HistoryItem.class));
+        //System.out.println(em.createQuery(query).getResultList());
+        return em.createQuery(query).getResultList();
     }
 
     @Override
@@ -85,8 +80,9 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public void saveHistoryItem(HistoryItem item) {
-
+    public void saveHistoryItem(HistoryItem historyItem) {
+        em.persist(historyItem);
+        em.flush();
     }
 
     @Override
@@ -106,6 +102,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void removeStockItem(StockItem stockItem) {
+
 
     }
 }

@@ -16,18 +16,14 @@ public class SoldItem {
 
     @OneToOne
     @MapsId
-
     private StockItem stockItem;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "fk_history")
-    //private HistoryItem historyId;
-
+    @ManyToOne
+    private HistoryItem historyId;
 
     private String name;
 
     private Integer quantity;
-
 
     private double price;
 
@@ -42,7 +38,14 @@ public class SoldItem {
         this.quantity = quantity;
     }
 
-/*
+    public SoldItem(StockItem stockItem, HistoryItem historyId, String name, Integer quantity, double price) {
+        this.stockItem = stockItem;
+        this.historyId = historyId;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public HistoryItem getHistoryId() {
         return historyId;
     }
@@ -50,7 +53,7 @@ public class SoldItem {
     public void setHistoryId(HistoryItem historyId) {
         this.historyId = historyId;
     }
-*/
+
     public Long getId() {
         return id;
     }
