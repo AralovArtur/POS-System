@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Already bought StockItem. SoldItem duplicates name and price for preserving history.
  */
 @Entity
-@Table(name = "SoldItem")
+@Table
 public class SoldItem {
 
     @Id
