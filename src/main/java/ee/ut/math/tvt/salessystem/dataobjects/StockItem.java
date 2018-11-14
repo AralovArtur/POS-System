@@ -38,6 +38,13 @@ public class StockItem {
         this.quantity = quantity;
     }
 
+    public StockItem(String name, double price, String description, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+    }
+
     public String getDescription() {
         return description;
     }

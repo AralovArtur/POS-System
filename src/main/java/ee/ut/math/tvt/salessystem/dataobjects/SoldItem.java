@@ -16,20 +16,19 @@ public class SoldItem {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "StockItemId")
+
     private StockItem stockItem;
 
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "fk_history")
     //private HistoryItem historyId;
 
-    @Column(name = "name")
+
     private String name;
 
-    @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "price")
+
     private double price;
 
     public SoldItem() {
