@@ -23,7 +23,7 @@ public class HistoryItem {
     public HistoryItem() {
     }
 
-    public HistoryItem(LocalDateTime date){
+    public HistoryItem(LocalDateTime date) {
         this.date = date;
         this.items = new ArrayList<>();
     }
