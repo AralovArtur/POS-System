@@ -53,7 +53,6 @@ public class StockController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         log.info("Stock controller is initialized");
         refreshStockItems();
-        // TODO refresh view after adding new items
     }
 
     @FXML
@@ -120,7 +119,9 @@ public class StockController implements Initializable {
     public void resetProductField() {
         try {
             Long barCode = Long.valueOf(barCodeField.getText());
+            System.out.println(barCode);
             StockItem stockItem = dao.findStockItem(barCode);
+            System.out.println(stockItem);
             dao.removeStockItem(stockItem);
         }
         catch (RuntimeException e) {
