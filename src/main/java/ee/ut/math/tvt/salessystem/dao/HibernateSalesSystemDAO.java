@@ -64,8 +64,8 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     public List<HistoryItem> findHistoryItems() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<HistoryItem> query = cb.createQuery(HistoryItem.class);
-        Root<StockItem> stockItemRoot = query.from(StockItem.class);
-        query.select(stockItemRoot.as(HistoryItem.class));
+        Root<HistoryItem> historyItemRoot = query.from(HistoryItem.class);
+        query.select(historyItemRoot.as(HistoryItem.class));
         //System.out.println(em.createQuery(query).getResultList());
         return em.createQuery(query).getResultList();
     }
