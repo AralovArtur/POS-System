@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 @Table
 public class StockItem {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -43,6 +43,8 @@ public class StockItem {
         this.description = description;
         this.quantity = quantity;
     }
+
+
 
     public String getDescription() {
         return description;

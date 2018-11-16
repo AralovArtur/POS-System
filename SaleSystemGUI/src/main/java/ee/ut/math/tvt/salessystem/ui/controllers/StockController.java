@@ -101,7 +101,7 @@ public class StockController implements Initializable {
             }
         }
         catch (RuntimeException e) {
-            log.error("Wrong input data");
+            log.error("Wrong input data"+ e);
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Wrong input data!");
