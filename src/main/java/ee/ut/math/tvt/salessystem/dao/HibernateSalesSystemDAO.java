@@ -48,16 +48,14 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveStockItem(StockItem stockItem) {
+        beginTransaction();
         em.persist(stockItem);
-<<<<<<< HEAD
-=======
         em.flush();
->>>>>>> f189c49a7778a2447e4e266cc01ca5e5b199d9da
+        commitTransaction();
     }
 
     @Override
     public void saveSoldItem(SoldItem soldItem) {
-        beginTransaction();
         em.persist(soldItem);
     }
 
@@ -83,9 +81,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveHistoryItem(HistoryItem historyItem) {
-        beginTransaction();
         em.persist(historyItem);
-        commitTransaction();
     }
 
     @Override

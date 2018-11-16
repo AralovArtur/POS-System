@@ -69,7 +69,6 @@ public class PurchaseController implements Initializable {
                 }
             }
         });
-
         chooseProduct();
     }
 

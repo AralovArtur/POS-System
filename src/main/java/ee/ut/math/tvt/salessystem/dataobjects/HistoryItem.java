@@ -33,6 +33,11 @@ public class HistoryItem {
         this.items = items;
     }
 
+    public HistoryItem(LocalDateTime date) {
+        this.date = date;
+        this.items = new ArrayList<>();
+    }
+
     public double getTotal(){
         double total = 0.0;
         for (SoldItem item: items){
