@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Table
 public class StockItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

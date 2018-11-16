@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="History")
+@Table()
 public class HistoryItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="Date")
+    @Column()
     private LocalDateTime date;
 
     @OneToMany(mappedBy = "historyId")
@@ -23,9 +22,15 @@ public class HistoryItem {
     public HistoryItem() {
     }
 
-    public HistoryItem(LocalDateTime date) {
+    public HistoryItem(Long id, LocalDateTime date, List<SoldItem> items) {
+        this.id = id;
         this.date = date;
-        this.items = new ArrayList<>();
+        this.items = items;
+    }
+
+    public HistoryItem(LocalDateTime date, List<SoldItem> items) {
+        this.date = date;
+        this.items = items;
     }
 
     public double getTotal(){

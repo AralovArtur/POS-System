@@ -48,14 +48,9 @@ public class ShoppingCart {
         // what is a transaction? https://stackoverflow.com/q/974596
         //dao.beginTransaction();
         try {
-            HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
+            HistoryItem historyItem = new HistoryItem(LocalDateTime.now(), items);
             dao.saveHistoryItem(historyItem);
-            for (SoldItem item : items) {
-                dao.saveSoldItem(item);
-                historyItem.addItem(item);
-            }
-            dao.commitTransaction();
-            items.clear();
+            //items.clear();
         } catch (Exception e) {
             dao.rollbackTransaction();
             throw e;

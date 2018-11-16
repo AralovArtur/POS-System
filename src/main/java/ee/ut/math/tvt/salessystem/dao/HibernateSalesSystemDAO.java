@@ -19,13 +19,9 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     private final EntityManager em;
 
     public HibernateSalesSystemDAO() {
-            // if you get ConnectException/JDBCConnectionException then you
-            // probably forgot to start the database before starting the application
             emf = Persistence.createEntityManagerFactory("pos");
             em = emf.createEntityManager();
     }
-
-    // TODO implement missing methods
 
     public void close() {
         em.close();
@@ -38,27 +34,29 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
         CriteriaQuery<StockItem> query = cb.createQuery(StockItem.class);
         Root<StockItem> stockItemRoot = query.from(StockItem.class);
         query.select(stockItemRoot.as(StockItem.class));
-        //System.out.println(em.createQuery(query).getResultList());
+        System.out.println(em.createQuery(query).getResultList());
         return em.createQuery(query).getResultList();
     }
 
     @Override
     public StockItem findStockItem(long id) {
         beginTransaction();
-        return em.find(StockItem.class, id);
+        StockItem stockItem = em.find(StockItem.class, id);
+        commitTransaction();
+        return stockItem;
     }
 
     @Override
     public void saveStockItem(StockItem stockItem) {
+        beginTransaction();
         em.persist(stockItem);
-        commitTransaction();
+        em.flush();
     }
 
     @Override
     public void saveSoldItem(SoldItem soldItem) {
         beginTransaction();
         em.persist(soldItem);
-        commitTransaction();
     }
 
     @Override
@@ -83,7 +81,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveHistoryItem(HistoryItem historyItem) {
-        //beginTransaction();
+        beginTransaction();
         em.persist(historyItem);
         commitTransaction();
     }

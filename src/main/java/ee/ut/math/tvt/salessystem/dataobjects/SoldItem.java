@@ -9,9 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table
 public class SoldItem {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
@@ -21,10 +19,13 @@ public class SoldItem {
     @ManyToOne
     private HistoryItem historyId;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "price")
     private double price;
 
     public SoldItem() {
