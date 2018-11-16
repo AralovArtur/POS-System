@@ -30,11 +30,20 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public List<StockItem> findStockItems() {
+        List<StockItem> stockItems = em.createQuery(
+                "select item " +
+                        "from StockItem item", StockItem.class )
+                .getResultList();
+        return stockItems;
+    }
+
+    @Override
+    public List<HistoryItem> findHistoryItems() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<StockItem> query = cb.createQuery(StockItem.class);
+        CriteriaQuery<HistoryItem> query = cb.createQuery(HistoryItem.class);
         Root<StockItem> stockItemRoot = query.from(StockItem.class);
-        query.select(stockItemRoot.as(StockItem.class));
-        System.out.println(em.createQuery(query).getResultList());
+        query.select(stockItemRoot.as(HistoryItem.class));
+        System.out.println("Lol");
         return em.createQuery(query).getResultList();
     }
 
@@ -50,27 +59,24 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     public void saveStockItem(StockItem stockItem) {
         beginTransaction();
         em.persist(stockItem);
-        em.flush();
+        commitTransaction();
     }
 
     @Override
     public void saveSoldItem(SoldItem soldItem) {
         beginTransaction();
         em.persist(soldItem);
-    }
-
-    @Override
-    public List<HistoryItem> findHistoryItems() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<HistoryItem> query = cb.createQuery(HistoryItem.class);
-        Root<HistoryItem> historyItemRoot = query.from(HistoryItem.class);
-        query.select(historyItemRoot.as(HistoryItem.class));
-        //System.out.println(em.createQuery(query).getResultList());
-        return em.createQuery(query).getResultList();
+        commitTransaction();
     }
 
     @Override
     public List<HistoryItem> findHistoryItemsBetween(LocalDate startDate, LocalDate endDate) {
+        HistoryItem item = em.createQuery(
+                "select item " +
+                        "from HistoryItem item " +
+                        "where item.date 2> ", HistoryItem.class)
+                .getSingleResult();
+
         return null;
     }
 
@@ -81,7 +87,6 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveHistoryItem(HistoryItem historyItem) {
-        beginTransaction();
         em.persist(historyItem);
         commitTransaction();
     }
