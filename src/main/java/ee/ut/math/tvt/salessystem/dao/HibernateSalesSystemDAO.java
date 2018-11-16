@@ -34,7 +34,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
         CriteriaQuery<StockItem> query = cb.createQuery(StockItem.class);
         Root<StockItem> stockItemRoot = query.from(StockItem.class);
         query.select(stockItemRoot.as(StockItem.class));
-        System.out.println(em.createQuery(query).getResultList());
+        System.out.println("HERE!!!!!!!!!!" + em.createQuery(query).getResultList());
         return em.createQuery(query).getResultList();
     }
 
@@ -48,6 +48,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveStockItem(StockItem stockItem) {
+        System.out.println(stockItem);
         beginTransaction();
         em.persist(stockItem);
         em.flush();
@@ -56,7 +57,9 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveSoldItem(SoldItem soldItem) {
+        System.out.println(soldItem);
         em.persist(soldItem);
+        em.flush();
     }
 
     @Override
@@ -81,6 +84,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveHistoryItem(HistoryItem historyItem) {
+        System.out.println(historyItem);
         em.persist(historyItem);
     }
 

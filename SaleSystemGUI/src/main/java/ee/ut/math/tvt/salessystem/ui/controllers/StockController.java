@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
@@ -45,7 +46,7 @@ public class StockController implements Initializable {
 
 
 
-    public StockController(SalesSystemDAO dao) {
+    public StockController(HibernateSalesSystemDAO dao) {
         this.dao = dao;
     }
 

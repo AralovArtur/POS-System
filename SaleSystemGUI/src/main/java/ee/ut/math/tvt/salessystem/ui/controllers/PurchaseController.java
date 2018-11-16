@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
@@ -49,7 +50,7 @@ public class PurchaseController implements Initializable {
     @FXML
     private TableView<SoldItem> purchaseTableView;
 
-    public PurchaseController(SalesSystemDAO dao, ShoppingCart shoppingCart) {
+    public PurchaseController(HibernateSalesSystemDAO dao, ShoppingCart shoppingCart) {
         this.dao = dao;
         this.shoppingCart = shoppingCart;
     }
@@ -69,7 +70,7 @@ public class PurchaseController implements Initializable {
                 }
             }
         });
-        chooseProduct();
+        //chooseProduct();
     }
 
     /** Event handler for the <code>new purchase</code> event. */
@@ -79,6 +80,7 @@ public class PurchaseController implements Initializable {
         try {
             enableInputs();
             this.priceField.setDisable(true);
+            chooseProduct();
         } catch (SalesSystemException e) {
             log.error(e.getMessage(), e);
         }
@@ -217,9 +219,11 @@ public class PurchaseController implements Initializable {
     }
 
     private void chooseProduct() {
+        dao.beginTransaction();
         List<StockItem> stockItems = dao.findStockItems();
+        dao.commitTransaction();
         for (StockItem item: stockItems) {
-            CheckMenuItem checkMenuItem = new CheckMenuItem(item.getDescription());
+            CheckMenuItem checkMenuItem = new CheckMenuItem(item.getName());
             checkMenuItem.setOnAction(e -> {
                 if (checkMenuItem.isSelected()) {
                     barCodeField.setText(item.getId().toString());
