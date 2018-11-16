@@ -49,7 +49,7 @@ public class ShoppingCart {
         //dao.beginTransaction();
         try {
             dao.beginTransaction();
-            HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
+            HistoryItem historyItem = new HistoryItem(LocalDateTime.now(), items);
             historyItem.setItems(items);
             dao.saveHistoryItem(historyItem);
             dao.commitTransaction();
