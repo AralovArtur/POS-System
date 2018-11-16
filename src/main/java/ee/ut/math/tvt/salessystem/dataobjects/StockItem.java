@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Table
 public class StockItem {
-
     @Id
     private Long id;
 

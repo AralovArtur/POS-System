@@ -21,10 +21,13 @@ public class SoldItem {
     @ManyToOne
     private HistoryItem historyId;
 
+    @Column
     private String name;
 
+    @Column
     private Integer quantity;
 
+    @Column
     private double price;
 
     public SoldItem() {

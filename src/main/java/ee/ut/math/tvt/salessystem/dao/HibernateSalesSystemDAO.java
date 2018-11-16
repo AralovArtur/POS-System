@@ -49,7 +49,6 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     @Override
     public void saveStockItem(StockItem stockItem) {
         em.persist(stockItem);
-        commitTransaction();
     }
 
     @Override
