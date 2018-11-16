@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.logic;
 
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.HistoryItem;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
@@ -16,7 +17,7 @@ public class ShoppingCart {
     private final List<SoldItem> items = new ArrayList<>();
     private static final Logger log = LogManager.getLogger(ShoppingCart.class);
 
-    public ShoppingCart(SalesSystemDAO dao) {
+    public ShoppingCart(HibernateSalesSystemDAO dao) {
         this.dao = dao;
     }
 
@@ -45,7 +46,7 @@ public class ShoppingCart {
         // note the use of transactions. InMemorySalesSystemDAO ignores transactions
         // but when you start using hibernate in lab5, then it will become relevant.
         // what is a transaction? https://stackoverflow.com/q/974596
-        dao.beginTransaction();
+        //dao.beginTransaction();
         try {
             HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
             dao.saveHistoryItem(historyItem);
