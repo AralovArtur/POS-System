@@ -28,6 +28,10 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
         emf.close();
     }
 
+    public void clear() {
+        em.clear();
+    }
+
     @Override
     public List<StockItem> findStockItems() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -48,7 +52,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveStockItem(StockItem stockItem) {
-        System.out.println(stockItem);
+        System.out.println(stockItem.getId());
         beginTransaction();
         em.persist(stockItem);
         em.flush();
@@ -59,7 +63,6 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     public void saveSoldItem(SoldItem soldItem) {
         System.out.println(soldItem);
         em.persist(soldItem);
-        em.flush();
     }
 
     @Override

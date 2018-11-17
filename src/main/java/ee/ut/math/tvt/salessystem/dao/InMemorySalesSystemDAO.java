@@ -100,6 +100,11 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
+    public void clear() {
+
+    }
+
+    @Override
     public void beginTransaction() {
     }
 

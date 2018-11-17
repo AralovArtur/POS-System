@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,6 +31,7 @@ public class PurchaseController implements Initializable {
 
     private final SalesSystemDAO dao;
     private final ShoppingCart shoppingCart;
+    private static List<Long> ids = new ArrayList<>();
 
     @FXML
     private Button newPurchase;
@@ -186,7 +188,16 @@ public class PurchaseController implements Initializable {
                 else {
                     if (quantity > 0) {
                         stockItem.setQuantity(stockItem.getQuantity() - quantity);
-                        shoppingCart.addItem(new SoldItem(stockItem, quantity));
+                        SoldItem item = new SoldItem(stockItem, quantity);
+                        if (ids.isEmpty()) {
+                            item.setId(1L);
+                            ids.add(1L);
+                        } else {
+                            item.setId(Long.valueOf(ids.size() + 1));
+                            ids.add(1L);
+                        }
+                        System.out.println("ID STOCKITEM: " + item.getId());
+                        shoppingCart.addItem(item);
                         purchaseTableView.refresh();
                     }
                 }
