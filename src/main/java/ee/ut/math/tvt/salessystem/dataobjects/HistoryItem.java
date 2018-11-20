@@ -9,8 +9,9 @@ import java.util.List;
 @Entity
 @Table
 public class HistoryItem {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column

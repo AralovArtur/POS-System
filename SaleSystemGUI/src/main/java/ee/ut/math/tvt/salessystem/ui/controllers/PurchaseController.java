@@ -190,10 +190,10 @@ public class PurchaseController implements Initializable {
                         stockItem.setQuantity(stockItem.getQuantity() - quantity);
                         SoldItem item = new SoldItem(stockItem, quantity);
                         if (ids.isEmpty()) {
-                            item.setId(1L);
+                            //item.setId(1L);
                             ids.add(1L);
                         } else {
-                            item.setId(Long.valueOf(ids.size() + 1));
+                            //item.setId(Long.valueOf(ids.size() + 1));
                             ids.add(1L);
                         }
                         System.out.println("ID STOCKITEM: " + item.getId());

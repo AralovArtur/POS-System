@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateSalesSystemDAO implements SalesSystemDAO {
@@ -63,6 +64,7 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     public void saveSoldItem(SoldItem soldItem) {
         System.out.println(soldItem);
         em.persist(soldItem);
+        em.flush();
     }
 
     @Override
@@ -77,12 +79,30 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public List<HistoryItem> findHistoryItemsBetween(LocalDate startDate, LocalDate endDate) {
-        return null;
+        List<HistoryItem> allItems = findHistoryItems();
+        List<HistoryItem> result = new ArrayList<>();
+        for (HistoryItem item : allItems){
+            LocalDate ld = item.getLocalDateTime().toLocalDate();
+            if (ld.isAfter(startDate) &&  ld.isBefore(endDate)
+                    || ld.isEqual(startDate)
+                    || ld.isEqual(endDate)){
+                result.add(item);
+            }
+        }
+        return result;
     }
 
     @Override
     public List<HistoryItem> find10LastHistoryItems() {
-        return null;
+        List<HistoryItem> allItems = findHistoryItems();
+        if (allItems.size()<11){
+            return allItems;
+        }
+        List<HistoryItem> result = new ArrayList<>();
+        for (int i = allItems.size()-1; i != allItems.size()-11; i--){
+            result.add(allItems.get(i));
+        }
+        return result;
     }
 
     @Override

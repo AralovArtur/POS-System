@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table
 public class SoldItem {
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +18,7 @@ public class SoldItem {
     @MapsId
     private StockItem stockItem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private HistoryItem historyId;
 
     @Column(name = "name")

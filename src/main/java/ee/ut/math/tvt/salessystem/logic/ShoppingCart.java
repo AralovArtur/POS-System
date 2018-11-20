@@ -54,14 +54,14 @@ public class ShoppingCart {
             dao.beginTransaction();
             HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
             dao.saveHistoryItem(historyItem);
-            System.out.println("HISTORYID" + historyItem.getId());
+            System.out.println("HISTORYID " + historyItem.getId());
             for (SoldItem soldItem : items){
                 soldItem.setHistoryId(historyItem);
                 System.out.println(soldItem.getHistoryId());
                 System.out.println(soldItem.getId());
                 historyItem.addItem(soldItem);
-                /*soldItem.setId(historyItem.getId());
-                dao.saveSoldItem(soldItem);*/
+                //soldItem.setId(historyItem.getId());
+                dao.saveSoldItem(soldItem);
             }
             dao.commitTransaction();
             items.clear();
