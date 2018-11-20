@@ -64,7 +64,6 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     public void saveSoldItem(SoldItem soldItem) {
         System.out.println(soldItem);
         em.persist(soldItem);
-        em.flush();
     }
 
     @Override
