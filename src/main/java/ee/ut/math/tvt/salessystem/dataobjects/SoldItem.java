@@ -15,7 +15,6 @@ public class SoldItem {
     private Long id;
 
     @OneToOne
-    @MapsId
     private StockItem stockItem;
 
     @ManyToOne(cascade = CascadeType.ALL)

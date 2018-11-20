@@ -59,9 +59,11 @@ public class ShoppingCart {
                 soldItem.setHistoryId(historyItem);
                 System.out.println(soldItem.getHistoryId());
                 System.out.println(soldItem.getId());
-                historyItem.addItem(soldItem);
                 //soldItem.setId(historyItem.getId());
+                historyItem.addItem(soldItem);
+
                 dao.saveSoldItem(soldItem);
+
             }
             dao.commitTransaction();
             items.clear();
