@@ -9,14 +9,15 @@ import javax.persistence.*;
 @Entity
 @Table
 public class SoldItem {
+
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @MapsId
     private StockItem stockItem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private HistoryItem historyId;
 
     @Column(name = "name")
@@ -32,7 +33,6 @@ public class SoldItem {
     }
 
     public SoldItem(StockItem stockItem, int quantity) {
-        this.id = stockItem.getId();
         this.stockItem = stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
@@ -91,8 +91,9 @@ public class SoldItem {
         return price * ((double) quantity);
     }
 
-    public StockItem getStockItem() {
-        return stockItem;
+    // RETURNS ID MAY CAUSE PROBLEMS
+    public Long getStockItem() {
+        return stockItem.getId();
     }
 
     public void setStockItem(StockItem stockItem) {

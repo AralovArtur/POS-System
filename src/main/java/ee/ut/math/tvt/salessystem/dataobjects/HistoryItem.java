@@ -7,25 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table()
+@Table
 public class HistoryItem {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column()
+    @Column
     private LocalDateTime date;
 
     @OneToMany(mappedBy = "historyId")
     private List<SoldItem> items;
 
     public HistoryItem() {
-    }
-
-    public HistoryItem(Long id, LocalDateTime date, List<SoldItem> items) {
-        this.id = id;
-        this.date = date;
-        this.items = items;
     }
 
     public HistoryItem(LocalDateTime date, List<SoldItem> items) {

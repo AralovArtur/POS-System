@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,6 +31,7 @@ public class PurchaseController implements Initializable {
 
     private final SalesSystemDAO dao;
     private final ShoppingCart shoppingCart;
+    private static List<Long> ids = new ArrayList<>();
 
     @FXML
     private Button newPurchase;
@@ -49,7 +52,7 @@ public class PurchaseController implements Initializable {
     @FXML
     private TableView<SoldItem> purchaseTableView;
 
-    public PurchaseController(SalesSystemDAO dao, ShoppingCart shoppingCart) {
+    public PurchaseController(HibernateSalesSystemDAO dao, ShoppingCart shoppingCart) {
         this.dao = dao;
         this.shoppingCart = shoppingCart;
     }
@@ -69,7 +72,7 @@ public class PurchaseController implements Initializable {
                 }
             }
         });
-        chooseProduct();
+        //chooseProduct();
     }
 
     /** Event handler for the <code>new purchase</code> event. */
@@ -79,6 +82,7 @@ public class PurchaseController implements Initializable {
         try {
             enableInputs();
             this.priceField.setDisable(true);
+            chooseProduct();
         } catch (SalesSystemException e) {
             log.error(e.getMessage(), e);
         }
@@ -184,7 +188,16 @@ public class PurchaseController implements Initializable {
                 else {
                     if (quantity > 0) {
                         stockItem.setQuantity(stockItem.getQuantity() - quantity);
-                        shoppingCart.addItem(new SoldItem(stockItem, quantity));
+                        SoldItem item = new SoldItem(stockItem, quantity);
+                        if (ids.isEmpty()) {
+                            //item.setId(1L);
+                            ids.add(1L);
+                        } else {
+                            //item.setId(Long.valueOf(ids.size() + 1));
+                            ids.add(1L);
+                        }
+                        System.out.println("ID STOCKITEM: " + item.getId());
+                        shoppingCart.addItem(item);
                         purchaseTableView.refresh();
                     }
                 }
@@ -217,9 +230,11 @@ public class PurchaseController implements Initializable {
     }
 
     private void chooseProduct() {
+        dao.beginTransaction();
         List<StockItem> stockItems = dao.findStockItems();
+        dao.commitTransaction();
         for (StockItem item: stockItems) {
-            CheckMenuItem checkMenuItem = new CheckMenuItem(item.getDescription());
+            CheckMenuItem checkMenuItem = new CheckMenuItem(item.getName());
             checkMenuItem.setOnAction(e -> {
                 if (checkMenuItem.isSelected()) {
                     barCodeField.setText(item.getId().toString());
