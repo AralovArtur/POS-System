@@ -91,8 +91,9 @@ public class SoldItem {
         return price * ((double) quantity);
     }
 
-    public StockItem getStockItem() {
-        return stockItem;
+    // RETURNS ID MAY CAUSE PROBLEMS
+    public Long getStockItem() {
+        return stockItem.getId();
     }
 
     public void setStockItem(StockItem stockItem) {
