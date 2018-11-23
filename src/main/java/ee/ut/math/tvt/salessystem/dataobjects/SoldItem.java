@@ -29,9 +29,6 @@ public class SoldItem {
     @Column(name = "price")
     private double price;
 
-    public SoldItem() {
-    }
-
     public SoldItem(StockItem stockItem, int quantity) {
         this.stockItem = stockItem;
         this.name = stockItem.getName();
@@ -45,6 +42,9 @@ public class SoldItem {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public SoldItem() {
     }
 
     public HistoryItem getHistoryId() {

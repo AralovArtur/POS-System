@@ -3,7 +3,6 @@ package ee.ut.math.tvt.salessystem.ui.controllers;
 import com.sun.javafx.collections.ObservableListWrapper;
 import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
-import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -120,10 +119,8 @@ public class StockController implements Initializable {
     public void resetProductField() {
         try {
             Long barCode = Long.valueOf(barCodeField.getText());
-            System.out.println(barCode);
             StockItem stockItem = dao.findStockItem(barCode);
-            System.out.println(stockItem);
-            dao.removeStockItem(stockItem);
+            stockItem.setQuantity(0);
         }
         catch (RuntimeException e) {
             log.error("Wrong input data");
@@ -133,10 +130,6 @@ public class StockController implements Initializable {
             alert.setContentText("Try to enter correct data!");
             alert.showAndWait();
         }
-    }
-
-    @FXML
-    public void refreeshStockItems() {
     }
 
     @FXML

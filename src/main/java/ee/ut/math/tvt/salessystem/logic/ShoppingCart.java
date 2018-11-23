@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,7 +50,6 @@ public class ShoppingCart {
         //dao.beginTransaction();
         log.info(items);
         try {
-            dao.beginTransaction();
             HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
             dao.saveHistoryItem(historyItem);
             System.out.println("HISTORYID " + historyItem.getId());
@@ -65,7 +63,6 @@ public class ShoppingCart {
                 dao.saveSoldItem(soldItem);
 
             }
-            dao.commitTransaction();
             items.clear();
         } catch (Exception e) {
             dao.rollbackTransaction();
