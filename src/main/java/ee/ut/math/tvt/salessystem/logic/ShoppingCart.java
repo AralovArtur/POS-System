@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
+import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,10 +33,23 @@ public class ShoppingCart {
      * Add new SoldItem to table.
      */
     public void addItem(SoldItem item) {
-        // TODO In case such stockItem already exists increase the quantity of the existing stock
-        // TODO verify that warehouse items' quantity remains at least zero or throw an exception
-
-        items.add(item);
+        if (item.getQuantity() <= 0)
+            throw new NumberFormatException("Invalid data");
+        int kontroll = 1;
+        for (SoldItem item1: items) {
+            if (item1.getName() == item.getName()) {
+                if (item1.getQuantity() < item.getQuantity())
+                    throw new NumberFormatException("Invalid data");
+                item1.setQuantity(item1.getQuantity() + item.getQuantity());
+                kontroll = 0;
+            }
+        }
+        if (kontroll == 1) {
+            StockItem stockItem = dao.findStockItem(item.getId());
+            if (stockItem.getQuantity() < item.getQuantity())
+                throw new NumberFormatException("Invalid data");
+            items.add(item);
+        }
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
     }
 

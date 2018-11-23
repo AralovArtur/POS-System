@@ -196,6 +196,7 @@ public class PurchaseController implements Initializable {
                     if (quantity > 0) {
                         stockItem.setQuantity(stockItem.getQuantity() - quantity);
                         SoldItem item = new SoldItem(stockItem, quantity);
+                        item.setId(stockItem.getId());
                         if (ids.isEmpty()) {
                             //item.setId(1L);
                             ids.add(1L);
@@ -203,7 +204,6 @@ public class PurchaseController implements Initializable {
                             //item.setId(Long.valueOf(ids.size() + 1));
                             ids.add(1L);
                         }
-                        System.out.println("ID STOCKITEM: " + item.getId());
                         shoppingCart.addItem(item);
                         purchaseTableView.refresh();
                     }
