@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
@@ -57,6 +58,11 @@ public class PurchaseController implements Initializable {
         this.shoppingCart = shoppingCart;
     }
 
+    public PurchaseController(InMemorySalesSystemDAO dao, ShoppingCart shoppingCart) {
+        this.dao = dao;
+        this.shoppingCart = shoppingCart;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cancelPurchase.setDisable(true);
@@ -72,7 +78,6 @@ public class PurchaseController implements Initializable {
                 }
             }
         });
-        //chooseProduct();
     }
 
     /** Event handler for the <code>new purchase</code> event. */
