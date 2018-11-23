@@ -95,6 +95,7 @@ public class PurchaseController implements Initializable {
     protected void cancelPurchaseButtonClicked() {
         log.info("Sale cancelled");
         try {
+            nameMenuButton.getItems().clear();
             shoppingCart.cancelCurrentPurchase();
             disableInputs();
             purchaseTableView.refresh();
@@ -110,6 +111,7 @@ public class PurchaseController implements Initializable {
     protected void submitPurchaseButtonClicked() {
         log.info("Sale complete");
         try {
+            nameMenuButton.getItems().clear();
             log.debug("Contents of the current basket:\n" + shoppingCart.getAll());
             shoppingCart.submitCurrentPurchase();
             disableInputs();
