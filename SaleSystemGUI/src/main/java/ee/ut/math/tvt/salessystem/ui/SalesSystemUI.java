@@ -32,11 +32,13 @@ public class SalesSystemUI extends Application {
 
     private static final Logger log = LogManager.getLogger(SalesSystemUI.class);
 
-    private final HibernateSalesSystemDAO dao;
+    //private final HibernateSalesSystemDAO dao;
+    private final InMemorySalesSystemDAO dao;
     private final ShoppingCart shoppingCart;
 
     public SalesSystemUI() {
-        dao = new HibernateSalesSystemDAO();
+        //dao = new HibernateSalesSystemDAO();
+        dao = new InMemorySalesSystemDAO();
         shoppingCart = new ShoppingCart(dao);
     }
 

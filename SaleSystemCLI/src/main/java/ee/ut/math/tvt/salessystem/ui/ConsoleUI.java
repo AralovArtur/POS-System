@@ -21,7 +21,7 @@ import java.util.Properties;
 public class ConsoleUI {
     private static final Logger log = LogManager.getLogger(ConsoleUI.class);
 
-    private final HibernateSalesSystemDAO dao;
+    private final SalesSystemDAO dao;
     private final ShoppingCart cart;
 
     public ConsoleUI(HibernateSalesSystemDAO dao) {
@@ -29,8 +29,14 @@ public class ConsoleUI {
         cart = new ShoppingCart(dao);
     }
 
+    public ConsoleUI(InMemorySalesSystemDAO dao) {
+        this.dao = dao;
+        cart = new ShoppingCart(dao);
+    }
+
     public static void main(String[] args) throws Exception {
-        HibernateSalesSystemDAO dao = new HibernateSalesSystemDAO();
+        //HibernateSalesSystemDAO dao = new HibernateSalesSystemDAO();
+        InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
         ConsoleUI console = new ConsoleUI(dao);
         console.run();
     }

@@ -1,6 +1,8 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.exception.DateControllEmptyException;
 import ee.ut.math.tvt.salessystem.exception.DateControllNegativeException;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
@@ -56,7 +58,11 @@ public class HistoryController implements Initializable {
     @FXML
     private TableView<SoldItem> soldProductsView;
 
-    public HistoryController(SalesSystemDAO dao) {
+    public HistoryController(HibernateSalesSystemDAO dao) {
+        this.dao = dao;
+    }
+
+    public HistoryController(InMemorySalesSystemDAO dao) {
         this.dao = dao;
     }
 

@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.fxml.FXML;
@@ -43,9 +44,11 @@ public class StockController implements Initializable {
     @FXML
     private TextField priceField;
 
-
-
     public StockController(HibernateSalesSystemDAO dao) {
+        this.dao = dao;
+    }
+
+    public StockController(InMemorySalesSystemDAO dao) {
         this.dao = dao;
     }
 
