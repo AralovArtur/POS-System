@@ -1,9 +1,7 @@
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
-import ee.ut.math.tvt.salessystem.exception.SalesSystemException;
 import ee.ut.math.tvt.salessystem.logic.ShoppingCart;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,22 +9,17 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class ShoppingCartTest {
-    private static InMemorySalesSystemDAO dao;
-    private static ShoppingCart shoppingCart;
-
-    @BeforeClass
-    public static void beforeClass() throws SalesSystemException {
-        dao = new InMemorySalesSystemDAO();
-        dao.saveStockItem(new StockItem(1L,"Beer", "The best beer",5.0, 50));
-        shoppingCart = new ShoppingCart(dao);
-    }
+    private static InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
+    private static ShoppingCart shoppingCart = new ShoppingCart(dao);
 
     @Test
     public void testAddingExistingItem() {
-        StockItem stockItem = dao.findStockItem(1L);
-        SoldItem soldItem1 = new SoldItem(stockItem, 5);
+        shoppingCart.getAll().clear();
+        StockItem stockItem = dao.findStockItem(4L);
+        stockItem.setQuantity(100);
+        SoldItem soldItem1 = new SoldItem(stockItem, 50);
         soldItem1.setId(stockItem.getId());
-        SoldItem soldItem2 = new SoldItem(stockItem, 5);
+        SoldItem soldItem2 = new SoldItem(stockItem, 50);
         soldItem2.setId(stockItem.getId());
         shoppingCart.addItem(soldItem1);
         shoppingCart.addItem(soldItem2);
@@ -36,40 +29,48 @@ public class ShoppingCartTest {
             if (item.getName() == soldItem1.getName())
                 kontroll = item.getQuantity();
         }
-        assertEquals(kontroll, 10);
+        assertEquals(100, kontroll);
     }
 
     @Test
     public void testAddingNewItem() {
-        StockItem stockItem = dao.findStockItem(1L);
-        SoldItem soldItem = new SoldItem(stockItem, 5);
+        shoppingCart.getAll().clear();
+        StockItem stockItem = dao.findStockItem(4L);
+        stockItem.setQuantity(100);
+        SoldItem soldItem = new SoldItem(stockItem, 50);
         soldItem.setId(stockItem.getId());
         shoppingCart.addItem(soldItem);
         boolean isAdded = shoppingCart.getAll().contains(soldItem);
-        assertEquals(isAdded, true);
+        assertEquals(true, isAdded);
     }
 
     @Test(expected = NumberFormatException.class)
     public void testAddingItemWithNegativeQuantity() {
-        StockItem stockItem = dao.findStockItem(1L);
-        SoldItem soldItem = new SoldItem(stockItem, -5);
+        shoppingCart.getAll().clear();
+        StockItem stockItem = dao.findStockItem(4L);
+        stockItem.setQuantity(100);
+        SoldItem soldItem = new SoldItem(stockItem, -50);
         shoppingCart.addItem(soldItem);
     }
 
     @Test(expected = NumberFormatException.class)
     public void testAddingItemWithQuantityTooLarge() {
-        StockItem stockItem = dao.findStockItem(1L);
-        SoldItem soldItem = new SoldItem(stockItem, 55);
+        shoppingCart.getAll().clear();
+        StockItem stockItem = dao.findStockItem(4L);
+        stockItem.setQuantity(100);
+        SoldItem soldItem = new SoldItem(stockItem, 105);
         soldItem.setId(stockItem.getId());
         shoppingCart.addItem(soldItem);
     }
 
     @Test(expected = NumberFormatException.class)
     public void testAddingItemWithQuantitySumTooLarge() {
-        StockItem stockItem = dao.findStockItem(1L);
-        SoldItem soldItem1 = new SoldItem(stockItem, 5);
+        shoppingCart.getAll().clear();
+        StockItem stockItem = dao.findStockItem(4L);
+        stockItem.setQuantity(100);
+        SoldItem soldItem1 = new SoldItem(stockItem, 50);
         soldItem1.setId(stockItem.getId());
-        SoldItem soldItem2 = new SoldItem(stockItem, 50);
+        SoldItem soldItem2 = new SoldItem(stockItem, 55);
         soldItem2.setId(stockItem.getId());
         shoppingCart.addItem(soldItem1);
         shoppingCart.addItem(soldItem2);

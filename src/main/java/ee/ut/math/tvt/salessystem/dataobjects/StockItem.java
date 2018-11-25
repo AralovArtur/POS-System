@@ -87,6 +87,12 @@ public class StockItem {
 
     @Override
     public String toString() {
-        return String.format("StockItem{id=%d, name='%s'}", id, name);
+        return "StockItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

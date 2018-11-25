@@ -36,18 +36,21 @@ public class ShoppingCart {
         if (item.getQuantity() <= 0)
             throw new NumberFormatException("Invalid data");
         int kontroll = 1;
-        for (SoldItem item1: items) {
-            if (item1.getName() == item.getName()) {
-                if (item1.getQuantity() < item.getQuantity())
-                    throw new NumberFormatException("Invalid data");
-                item1.setQuantity(item1.getQuantity() + item.getQuantity());
+        StockItem stockItem = dao.findStockItem(item.getId());
+        if (stockItem.getQuantity() < item.getQuantity())
+            throw new NumberFormatException("Invalid data");
+        for (SoldItem soldItem: items) {
+            if (soldItem.getName() == item.getName()) {
+                stockItem.setQuantity(stockItem.getQuantity() - item.getQuantity());
+                soldItem.setQuantity(soldItem.getQuantity() + item.getQuantity());
                 kontroll = 0;
             }
         }
+
         if (kontroll == 1) {
-            StockItem stockItem = dao.findStockItem(item.getId());
             if (stockItem.getQuantity() < item.getQuantity())
                 throw new NumberFormatException("Invalid data");
+            stockItem.setQuantity(stockItem.getQuantity() - item.getQuantity());
             items.add(item);
         }
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());

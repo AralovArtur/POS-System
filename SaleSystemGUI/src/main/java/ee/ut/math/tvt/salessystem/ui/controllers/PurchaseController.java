@@ -194,7 +194,7 @@ public class PurchaseController implements Initializable {
                 }
                 else {
                     if (quantity > 0) {
-                        stockItem.setQuantity(stockItem.getQuantity() - quantity);
+                        //stockItem.setQuantity(stockItem.getQuantity() - quantity);
                         SoldItem item = new SoldItem(stockItem, quantity);
                         item.setId(stockItem.getId());
                         if (ids.isEmpty()) {
