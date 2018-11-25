@@ -15,6 +15,9 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     private final List<StockItem> stockItemList;
     private final List<SoldItem> soldItemList;
     private final List<HistoryItem> historyItemList;
+    private int beginTransaction = 0;
+    private int commitTransaction = 0;
+    private boolean saveStockItemMethodCalled = false;
 
     public InMemorySalesSystemDAO() {
         List<StockItem> items = new ArrayList<StockItem>();
@@ -91,7 +94,19 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void saveStockItem(StockItem stockItem) {
+        if (stockItem.getQuantity() < 0) {
+            throw new IllegalArgumentException("Amount can not be negative!");
+        }
+        saveStockItemMethodCalled = true;
+        beginTransaction();
+        beginTransaction += 1;
         stockItemList.add(stockItem);
+        commitTransaction();
+        commitTransaction += 1;
+    }
+
+    public void addingExistingItem(StockItem existingItem, StockItem stockItem) {
+        existingItem.setQuantity(stockItem.getQuantity() + existingItem.getQuantity());
     }
 
     @Override
@@ -116,7 +131,23 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     public void commitTransaction() {
     }
 
+    public int getBeginTransaction() {
+        return beginTransaction;
+    }
+
+    public int getCommitTransaction() {
+        return commitTransaction;
+    }
+
     public List<StockItem> getStockItemList() {
         return stockItemList;
+    }
+
+    public boolean getSaveStockItemMethodCalled() {
+        return saveStockItemMethodCalled;
+    }
+
+    public void setSaveStockItemMethodCalled() {
+        saveStockItemMethodCalled = false;
     }
 }
