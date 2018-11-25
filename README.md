@@ -16,7 +16,7 @@
 <[Homework 4](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%204)>
 
 ## Homework 5:
-<Links to the solution>
+<[Homework 4](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%205)>
 
 ## Homework 6:
 <Links to the solution>
