@@ -147,7 +147,6 @@ public class PurchaseController implements Initializable {
     private void fillInputsBySelectedStockItem() {
         StockItem stockItem = getStockItemByBarcode();
         if (stockItem != null) {
-            //nameField.setText(stockItem.getName());
             priceField.setText(String.valueOf(stockItem.getPrice()));
         } else {
             resetProductField();
@@ -169,8 +168,7 @@ public class PurchaseController implements Initializable {
      * Add new item to the cart.
      */
     @FXML
-    public void addItemEventHandler() { //pay attention here
-        // add chosen item to the shopping cart.
+    public void addItemEventHandler() {
         StockItem stockItem = getStockItemByBarcode();
         if (stockItem != null) {
             int quantity;
@@ -194,14 +192,11 @@ public class PurchaseController implements Initializable {
                 }
                 else {
                     if (quantity > 0) {
-                        //stockItem.setQuantity(stockItem.getQuantity() - quantity);
                         SoldItem item = new SoldItem(stockItem, quantity);
                         item.setId(stockItem.getId());
                         if (ids.isEmpty()) {
-                            //item.setId(1L);
                             ids.add(1L);
                         } else {
-                            //item.setId(Long.valueOf(ids.size() + 1));
                             ids.add(1L);
                         }
                         shoppingCart.addItem(item);
@@ -209,7 +204,6 @@ public class PurchaseController implements Initializable {
                     }
                 }
             } catch (NumberFormatException e) {
-                quantity = 1;
                 log.warn("Vigane sisend");
             }
         }
@@ -232,7 +226,6 @@ public class PurchaseController implements Initializable {
     private void resetProductField() {
         barCodeField.setText("");
         quantityField.setText("1");
-        //nameField.setText("");
         priceField.setText("");
     }
 
