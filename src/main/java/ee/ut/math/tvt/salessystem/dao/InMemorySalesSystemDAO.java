@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InMemorySalesSystemDAO implements SalesSystemDAO {
@@ -84,6 +85,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         for (int i = historyItemList.size()-1; i != historyItemList.size()-11; i--){
             result.add(historyItemList.get(i));
         }
+        Arrays.sort(new List[]{result});
         return result;
     }
 

@@ -3,10 +3,13 @@ import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import ee.ut.math.tvt.salessystem.logic.ShoppingCart;
 import org.junit.Test;
+import util.SoldItemCreator;
+import util.StockItemCreator;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ShoppingCartTest {
     private static InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
@@ -75,4 +78,17 @@ public class ShoppingCartTest {
         shoppingCart.addItem(soldItem1);
         shoppingCart.addItem(soldItem2);
     }
+
+    @Test
+    public void Checking_Shopping_Cart_After_Purchase(){
+        shoppingCart.getAll().clear();
+        StockItem stockItem = new StockItemCreator().create();
+        dao.saveStockItem(stockItem);
+        SoldItem soldItem = new SoldItemCreator(stockItem).create();
+        shoppingCart.addItem(soldItem);
+        shoppingCart.submitCurrentPurchase();
+        assertTrue(shoppingCart.getAll().isEmpty());
+    }
+
+
 }
