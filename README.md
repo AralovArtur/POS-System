@@ -19,7 +19,7 @@
 <[Homework 5](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%205)>
 
 ## Homework 6:
-<Links to the solution>
+<[Homework 6](https://docs.google.com/spreadsheets/d/1vKOUitRQtlA1ALnrNZOakZB-y4uvnuXVqLsGIaqAzc8/edit#gid=270526174)>
 
 ## Homework 7:
 <Links to the solution>
