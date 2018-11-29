@@ -36,7 +36,7 @@ public class ShoppingCart {
         if (item.getQuantity() <= 0)
             throw new NumberFormatException("Invalid data");
         int kontroll = 1;
-        StockItem stockItem = dao.findStockItem(item.getStockItem());
+        StockItem stockItem = dao.findStockItem(item.getId());
         if (stockItem.getQuantity() < item.getQuantity())
             throw new NumberFormatException("Invalid data");
         for (SoldItem soldItem: items) {
