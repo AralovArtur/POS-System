@@ -21,7 +21,7 @@ public class HistoryItemCreator {
         this.dao = dao;
         this.shoppingCart = shoppingCart;
         this.historyItem = new HistoryItem(LocalDateTime.now());
-        this.historyItem.setItems(generateSoldItems());
+        this.historyItem.setItems(new ArrayList<>());
         this.historyItem.setId(Any.randomId());
     }
 
@@ -37,6 +37,10 @@ public class HistoryItemCreator {
         }
         shoppingCart.getAll().clear();
         return result;
+    }
+
+    private void setSoldItemsList(List<SoldItem> soldItemsList){
+        this.historyItem.setItems(soldItemsList);
     }
 
     public HistoryItem create(){

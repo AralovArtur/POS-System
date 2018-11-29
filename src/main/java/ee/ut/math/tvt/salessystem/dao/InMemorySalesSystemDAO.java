@@ -56,6 +56,10 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         soldItemList.add(item);
     }
 
+    public List<SoldItem> getSoldItemList() {
+        return soldItemList;
+    }
+
     @Override
     public List<HistoryItem> findHistoryItems() {
         return historyItemList;
@@ -121,6 +125,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void beginTransaction() {
+        beginTransaction +=1;
     }
 
     @Override
@@ -129,6 +134,8 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void commitTransaction() {
+        commitTransaction +=1;
+        beginTransaction -=1;
     }
 
     public int getBeginTransaction() {

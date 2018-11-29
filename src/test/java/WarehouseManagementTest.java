@@ -22,7 +22,7 @@ public class WarehouseManagementTest {
         int countBeginTransaction = dao.getBeginTransaction();
         int countCommitTransaction = dao.getCommitTransaction();
         assertEquals(1, countBeginTransaction);
-        assertEquals(1, countCommitTransaction);
+        assertEquals(2, countCommitTransaction);
     }
 
     @Test

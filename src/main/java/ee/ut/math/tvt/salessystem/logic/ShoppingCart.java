@@ -64,13 +64,14 @@ public class ShoppingCart {
         items.clear();
     }
 
-    public void submitCurrentPurchase() {
+    public HistoryItem submitCurrentPurchase() {
         // TODO decrease quantities of the warehouse stock
 
         // note the use of transactions. InMemorySalesSystemDAO ignores transactions
         // but when you start using hibernate in lab5, then it will become relevant.
         // what is a transaction? https://stackoverflow.com/q/974596
         //dao.beginTransaction();
+        dao.beginTransaction();
         log.info(items);
         try {
             HistoryItem historyItem = new HistoryItem(LocalDateTime.now());
@@ -80,13 +81,14 @@ public class ShoppingCart {
                 soldItem.setHistoryId(historyItem);
                 System.out.println(soldItem.getHistoryId());
                 System.out.println(soldItem.getId());
-                //soldItem.setId(historyItem.getId());
                 historyItem.addItem(soldItem);
 
                 dao.saveSoldItem(soldItem);
 
             }
+            dao.commitTransaction();
             items.clear();
+            return historyItem;
         } catch (Exception e) {
             dao.rollbackTransaction();
             throw e;
