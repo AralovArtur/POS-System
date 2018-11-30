@@ -61,6 +61,10 @@ public class ShoppingCart {
     }
 
     public void cancelCurrentPurchase() {
+        for (SoldItem soldItem : items){
+            StockItem stockItem = dao.findStockItem(soldItem.getStockItem());
+            stockItem.setQuantity(stockItem.getQuantity() + soldItem.getQuantity());
+        }
         items.clear();
     }
 
