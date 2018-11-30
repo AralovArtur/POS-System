@@ -103,10 +103,8 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         }
         saveStockItemMethodCalled = true;
         beginTransaction();
-        beginTransaction += 1;
         stockItemList.add(stockItem);
         commitTransaction();
-        commitTransaction += 1;
     }
 
     public void addingExistingItem(StockItem existingItem, StockItem stockItem) {
@@ -135,7 +133,6 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     @Override
     public void commitTransaction() {
         commitTransaction +=1;
-        beginTransaction -=1;
     }
 
     public int getBeginTransaction() {
