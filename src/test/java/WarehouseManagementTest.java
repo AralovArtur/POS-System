@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class WarehouseManagementTest {
-
     private StockItem item;
     private InMemorySalesSystemDAO dao;
 
@@ -22,7 +21,7 @@ public class WarehouseManagementTest {
         int countBeginTransaction = dao.getBeginTransaction();
         int countCommitTransaction = dao.getCommitTransaction();
         assertEquals(1, countBeginTransaction);
-        assertEquals(2, countCommitTransaction);
+        assertEquals(1, countCommitTransaction);
     }
 
     @Test
