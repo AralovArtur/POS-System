@@ -2,9 +2,9 @@
 .root{
 	 b_color: #FFF5EE;
 	 sb_color: #C0C0C0;
-	 main_text_color: #2F4F4F;
 	 control_color: #FFF5EE;
 	 title_color: #253939;
+     main_text_color: #2F4F4F;
 	 -fx-background-color: linear-gradient(from 50% 100% to 50% 50%, b_color, main_text_color);
 }
 
