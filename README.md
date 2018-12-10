@@ -22,6 +22,6 @@
 <[Homework 6](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%206)>
 
 ## Homework 7:
-<[Homework 6](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%207)>
+<[Homework 7](https://bitbucket.org/ArtyomkaQQ/lab7-ptenchiki/wiki/Homework%207)>
 
 We encourage you to use [markdown syntax](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)
