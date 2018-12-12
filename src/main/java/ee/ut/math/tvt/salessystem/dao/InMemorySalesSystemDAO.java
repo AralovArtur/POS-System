@@ -28,9 +28,9 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
         //This is for testing only
         List<HistoryItem> historyItems = new ArrayList<>();
-        /*HistoryItem i1 = new HistoryItem(LocalDateTime.now(), items);
+        HistoryItem i1 = new HistoryItem(LocalDateTime.now());
         i1.addItem(new SoldItem(new StockItem(3L, "Frankfurters", "Beer sauseges", 15.0, 12),10));
-        historyItems.add(i1);*/
+        historyItems.add(i1);
 
         this.stockItemList = items;
         this.soldItemList = new ArrayList<>();
