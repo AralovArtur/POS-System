@@ -128,13 +128,10 @@ public class ShoppingCartTest {
 
         shoppingCart.submitCurrentPurchase();
 
-<<<<<<< HEAD
         Assert.assertEquals(beforePurchase_Begin + 1, dao.getBeginTransaction());
         Assert.assertEquals(beforePurchase_Commit + 1, dao.getCommitTransaction());
-=======
         Assert.assertEquals(beforePurchase_Begin+1, dao.getBeginTransaction());
         Assert.assertEquals(beforePurchase_Commit+1, dao.getCommitTransaction());
->>>>>>> e49de0aa9cfe128e39e4f1ba90f1fb2fecce07fd
     }
 
     @Test
